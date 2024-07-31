@@ -72,9 +72,10 @@ author: noaione
 
 ## License
 
-This blog code is licensed with [MIT License](LICENSE).<br />
-While all of my blog post is licensed under a [Creative Commons Attribution 4.0 International License](LICENSE-CC-BY-4.0).
+All the content in this repository is licensed under [MIT License](LICENSE-MIT) with the exception of the content in the `content` folder which is licensed under [Creative Commons Attribution 4.0 International License](LICENSE-CC-BY-4.0).
+
+Some other exception applied on the `mdplugins` folder that might be under different license, please verify each `package.json` file for more information.
 
 ### Font License
 
-Monaspace Xenon and Neon font is created by GitHub Next and Lettermatic and licensed under [SIL Open Font License 1.1](https://github.com/githubnext/monaspace/blob/main/LICENSE),
+Monaspace Xenon and Neon font is created by GitHub Next and Lettermatic and licensed under [SIL Open Font License 1.1](https://github.com/githubnext/monaspace/blob/main/LICENSE).
