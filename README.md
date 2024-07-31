@@ -72,7 +72,7 @@ author: noaione
 
 ## License
 
-All the content in this repository is licensed under [MIT License](LICENSE-MIT) with the exception of the content in the `content` folder which is licensed under [Creative Commons Attribution 4.0 International License](LICENSE-CC-BY-AI-4.0) with modification regarding with AI/ML content.
+All the content in this repository is licensed under [MIT License](LICENSE-MIT) with the exception of the content in the `content` folder which is licensed under [Creative Commons Attribution 4.0 International License](LICENSE-CC-BY-AI-4.0) with modification regarding about AI/ML usages.
 
 Some other exception applied on the `mdplugins` folder that might be under different license, please verify each `package.json` file for more information.
 
