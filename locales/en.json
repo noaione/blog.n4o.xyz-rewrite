@@ -1,0 +1,37 @@
+{
+    "error": {
+        "missing": "We're sorry, the page you are looking for is not available."
+    },
+    "languages": {
+        "en": "English",
+        "id": "Indonesian",
+        "ja": "Japanese"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "About",
+        "blog": "Post",
+        "tags": "Tags",
+        "goBack": "Go back",
+        "blogPaged": "Post - Page {0}"
+    },
+    "blog": {
+        "noPosts": "No posts",
+        "backHome": "Go home",
+        "viewCount": "Viewed {0}x",
+        "authorTitle": "Author",
+        "author": {
+            "name": "Name",
+            "social": {
+                "twitter": "Twitter",
+                "github": "GitHub"
+            },
+            "title": "Author"
+        },
+        "publishAt": "Published at",
+        "readTime": "Read in {0}",
+        "draftNotice": "This post is still being written",
+        "prevPost": "Previous Article",
+        "nextPost": "Next Article"
+    }
+}

@@ -1,0 +1,61 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Monaspace Xenon is for Regular text */
+.font-monaspace-xenon {
+  font-family: "Monaspace Xenon", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+/* Monaspace Neon are used for code blocks */
+.font-monaspace-neon {
+  font-family: "Monaspace Neon", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New",
+    monospace;
+}
+
+@supports (font-variation-settings: normal) {
+  .font-monaspace-xenon {
+    font-family: "Monaspace Xenon Var";
+  }
+
+  .font-monaspace-neon {
+    font-family: "Monaspace Neon Var";
+  }
+}
+
+@supports (font-feature-settings: normal) {
+  /* Enable ligatures for Neon */
+  .font-monaspace-neon {
+    font-feature-settings: "calt", "liga", "ss01", "ss02", "ss03", "ss05", "ss06", "ss07", "ss08";
+  }
+
+  /* Enable some ligatures */
+  .font-monaspace-xenon * {
+    font-feature-settings: "calt", "liga", "ss01", "ss03", "ss06", "ss07", "ss09";
+  }
+}
+
+body {
+  @apply bg-white text-gray-950 dark:bg-gray-900 dark:text-white;
+}
+
+/* Prose adjustments */
+.prose {
+  .footnotes {
+    @apply text-[90%];
+  }
+
+  /* Twemoji */
+  [data-twemoji] {
+    @apply !my-0 inline-block size-[1.2em] align-text-bottom;
+  }
+}
+
+.prose :where(h2):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  margin-top: 1em;
+}
+
+.prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
+  font-size: 2em;
+}

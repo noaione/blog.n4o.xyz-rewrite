@@ -1,0 +1,38 @@
+{
+    "error": {
+        "missing": "申し訳ございませんが、お探しのページはご利用いただけません。"
+    },
+    "languages": {
+        "en": "英語",
+        "id": "インドネシア語",
+        "ja": "日本語"
+    },
+    "nav": {
+        "home": "ホーム",
+        "about": "について",
+        "blog": "ポスト",
+        "tags": "タグ",
+        "goBack": "戻る",
+        "blogPaged": "投稿 - ページ {0}"
+    },
+    "blog": {
+        "noPosts": "投稿はありません",
+        "backHome": "戻る",
+        "viewCount": "{0}回閲覧",
+        "authorTitle": "著者",
+        "author": {
+            "name": "名前",
+            "social": {
+                "twitter": "ツイッター",
+                "github": "GitHub"
+            },
+            "title": "著者"
+        },
+        "publishAt": "掲載場所",
+        "readTime": "{0}で読む",
+        "draft": "下書き",
+        "draftNotice": "この投稿はまだ執筆中です",
+        "prevPost": "前の記事",
+        "nextPost": "次の記事"
+    }
+}

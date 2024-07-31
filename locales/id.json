@@ -1,0 +1,37 @@
+{
+    "error": {
+        "missing": "Maaf, halaman yang Anda cari tidak tersedia."
+    },
+    "languages": {
+        "en": "Inggris",
+        "id": "Indonesia",
+        "ja": "Jepang"
+    },
+    "nav": {
+        "home": "Home",
+        "about": "Tentang",
+        "blog": "Post",
+        "tags": "Tagar",
+        "goBack": "Kembali",
+        "blogPaged": "Post - Laman {0}"
+    },
+    "blog": {
+        "noPosts": "Tidak ada postingan",
+        "backHome": "Kembali",
+        "viewCount": "Dilihat {0}x",
+        "authorTitle": "Penulis",
+        "author": {
+            "name": "Nama",
+            "social": {
+                "twitter": "Twitter"
+            },
+            "title": "Penulis"
+        },
+        "publishAt": "Publikasi pada",
+        "readTime": "Durasi baca {0}",
+        "draft": "Draft",
+        "draftNotice": "Postingan ini masih dalam proses penulisan",
+        "prevPost": "Artikel Sebelumnya",
+        "nextPost": "Artikel Selanjutnya"
+    }
+}
