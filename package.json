@@ -34,7 +34,8 @@
         "remark-heads": "file:./mdplugins/remark-heads",
         "remark-math": "^6.0.0",
         "remark-subsup": "file:./mdplugins/remark-subsup",
-        "remark-typography": "file:./mdplugins/remark-typography"
+        "remark-typography": "file:./mdplugins/remark-typography",
+        "uniqid": "^5.4.0"
     },
     "packageManager": "yarn@4.3.1",
     "devDependencies": {
@@ -49,6 +50,7 @@
         "@types/eslint__eslintrc": "^2.1.2",
         "@types/eslint__js": "^8.42.3",
         "@types/postcss-js": "^4.0.4",
+        "@types/uniqid": "^5.3.4",
         "dayjs-nuxt": "^2.1.9",
         "eslint": "^9.6.0",
         "eslint-config-prettier": "^9.1.0",

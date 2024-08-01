@@ -234,6 +234,8 @@ export default defineNuxtConfig({
       map: {
         video: "Video",
         admonition: "Admonition",
+        "repo-card": "RepoCard",
+        gist: "Gist",
       },
     },
   },
