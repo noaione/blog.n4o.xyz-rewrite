@@ -1,16 +1,16 @@
 ---
 title: Markdown
-description: This page has a title and some content to demo markdown features.
+description: Halaman ini memiliki judul dan beberapa konten untuk demonstrasi markdown.
 image: https://octodex.github.com/images/minion.png
 date: 2021-01-01
 draft: true
 tags:
   - demo
-  - test
+  - testing
 author: noaione
 ---
 
-# h1 Heading
+# h1 Main Heading
 
 ## h2 Heading
 
@@ -26,8 +26,6 @@ author: noaione
 
 ---
 
-Another one
-
 ---
 
 ---
@@ -40,9 +38,17 @@ Enable typographer option to see result.
 
 test.. test... test..... test?..... test!....
 
+Replica?!
+
+But WHY!?
+
 !!!!!! ???? ,, -- ---
 
 "Smartypants, double quotes" and 'single quotes'
+
+Texture Healing Exercise:
+
+timing
 
 ## Emphasis
 
@@ -188,6 +194,10 @@ The killer feature of `markdown-it` is very effective support of
 > Classic markup: :wink: :cry: :laughing: :yum:
 >
 > Shortcuts (emoticons): :-) :-( 8-) ;)
+
+As standard block:
+
+💀
 
 see [how to change output](https://github.com/markdown-it/markdown-it-emoji#change-output) with twemoji.
 

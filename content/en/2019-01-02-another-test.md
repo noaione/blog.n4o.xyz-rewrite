@@ -17,7 +17,7 @@ L = \frac{1}{2} \rho v^2 S C_L
 $$
 
 $$
-c = \\pm\\sqrt{a^2 + b^2} \\newline
-Eq1 = 1.23 * 5^5 * 5.3 \\newline
-Eq2 = 3.21 * 2^2 * 3.5 \\newline
+c = \\pm\\sqrt{a^2 + b^2}
+Eq1 = 1.23 * 5^5 * 5.3
+Eq2 = 3.21 * 2^2 * 3.5
 $$

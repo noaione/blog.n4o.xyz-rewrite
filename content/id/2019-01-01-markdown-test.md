@@ -2,7 +2,7 @@
 title: Markdown
 description: Halaman ini memiliki judul dan beberapa konten untuk demonstrasi markdown.
 image: https://octodex.github.com/images/minion.png
-date: 2021-01-01
+date: 2019-01-01
 draft: true
 tags:
   - demo
