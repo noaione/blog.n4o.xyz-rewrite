@@ -4,10 +4,10 @@ description: Halaman ini memiliki judul dan beberapa konten untuk demonstrasi ma
 image: https://octodex.github.com/images/minion.png
 date: 2019-01-01
 draft: true
+author: noaione
 tags:
   - demo
   - testing
-author: noaione
 ---
 
 # h1 Main Heading

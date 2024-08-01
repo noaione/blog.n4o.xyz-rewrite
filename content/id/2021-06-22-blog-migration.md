@@ -1,14 +1,14 @@
 ---
 title: "Migrasi Blog ke Nuxt"
 summary: "Fourth-time the charm"
-images: "/assets/images/blog-migration/ogthumb.png"
+image: "/assets/images/blog-migration/ogthumb.png"
 draft: true
 tags:
   - coding
 author: noaione
 ---
 
-Blog ini kalau situ gak tau sudah melewati 2x iterasi.
+Blog ini kalau situ gak tau sudah melewati 3x iterasi.
 
 Blog ini awalnya dibuat menggunakan tema Jekyll dan di hosting di GitHub.<br />
 Saya sendiri lupa sih pakai tema apaan untuk Blog awal itu, tapi blog itu lumayan enak untuk dipakai.

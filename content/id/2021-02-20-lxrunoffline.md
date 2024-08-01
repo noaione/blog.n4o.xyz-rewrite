@@ -1,7 +1,7 @@
 ---
 title: "WSL dengan LxRunOffline"
 description: "Instalasi WSL dengan menggunakan LxRunOffline"
-images: "/assets/images/lxrunoffline/thumb.png"
+image: "/assets/images/lxrunoffline/thumb.png"
 author: noaione
 tags:
   - tutorial

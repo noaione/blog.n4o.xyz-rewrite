@@ -1,7 +1,7 @@
 ---
 title: "DevOps Hell: Edisi naoTimes"
 description: "Mencoba merasakan automatic-deployment untuk naoTimes"
-images: "/assets/images/ci_cd_hell.png"
+image: "/assets/images/ci_cd_hell.png"
 author: noaione
 tags:
   - coding

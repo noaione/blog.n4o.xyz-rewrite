@@ -1,13 +1,13 @@
 ---
 title: "Petualangan membuat VTuber API"
 description: ":AyameDespair: :AyameDespair: :AyameDespair:"
-images: "/assets/images/whateven/ihaapidespair.png"
+image: "/assets/images/whateven/ihaapidespair.png"
 author: noaione
 tags:
   - coding
 ---
 
-Ini memanglah :AyameDespair: momen.
+:AyameDespair: momen.
 
 <!--more-->
 
