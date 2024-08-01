@@ -78,8 +78,9 @@ const rehypeTwemoji = (inputOptions) => (tree) => {
         return h("img", {
           src: url,
           alt: emoji,
-          "aria-label": description,
+          "aria-label": `Twitter: ${description}`,
           "data-twemoji": "",
+          "data-is-emote": true,
         });
       },
     ],

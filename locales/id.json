@@ -23,7 +23,8 @@
     "author": {
       "name": "Nama",
       "social": {
-        "twitter": "Twitter"
+        "twitter": "Twitter",
+        "github": "GitHub"
       },
       "title": "Penulis"
     },

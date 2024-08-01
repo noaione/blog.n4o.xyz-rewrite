@@ -59,3 +59,24 @@ body {
 .prose :where(h1):not(:where([class~="not-prose"], [class~="not-prose"] *)) {
   font-size: 2em;
 }
+
+.adm-content > p {
+  @apply !my-0;
+}
+
+.adm-content > p strong {
+  @apply font-variable text-inherit brightness-150 filter variation-weight-bold;
+}
+
+/**
+ * medium-zoom related
+ */
+.medium-zoom-overlay {
+  background-color: rgba(255, 255, 255, 0) !important;
+  backdrop-filter: blur(10px);
+}
+
+.dark .medium-zoom-overlay {
+  background-color: rgba(0, 0, 0, 0) !important;
+  backdrop-filter: blur(10px);
+}

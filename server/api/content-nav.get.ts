@@ -29,7 +29,7 @@ export default defineEventHandler(async (event) => {
       _contentType: "blog",
       _source: "content",
     })
-    .only(["title", "_id", "_path", "slug"])
+    .only(["title", "_id", "_path", "slug", "date"])
     .sort({
       date: 1,
     })

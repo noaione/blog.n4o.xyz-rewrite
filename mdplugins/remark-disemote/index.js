@@ -44,6 +44,7 @@ export default function remarkDisEmote() {
             // add class for styling
             data: {
               hProperties: {
+                ariaLabel: "emoticon: " + sel.name,
                 className: `discord-emote ${shouldInline ? "discord-emote-inline" : ""}`,
               },
             },

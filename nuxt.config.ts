@@ -153,6 +153,7 @@ export default defineNuxtConfig({
         "python",
         "powershell",
         "diff",
+        "bat",
       ],
     },
     markdown: {
@@ -228,4 +229,12 @@ export default defineNuxtConfig({
     defaultTimezone: "Asia/Jakarta",
   },
   compatibilityDate: "2024-07-28",
+  mdc: {
+    components: {
+      map: {
+        video: "Video",
+        admonition: "Admonition",
+      },
+    },
+  },
 });

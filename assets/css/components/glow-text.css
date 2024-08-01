@@ -40,6 +40,6 @@
   }
 
   .glow-shadow {
-    @apply shadow-gray-500 dark:shadow-gray-200;
+    @apply shadow-gray-400 dark:shadow-gray-200;
   }
 }

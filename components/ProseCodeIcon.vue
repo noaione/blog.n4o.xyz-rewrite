@@ -9,7 +9,7 @@
   <Icon v-else-if="mappedLang === 'postcss'" name="simple-icons:postcss" class="h-4 w-4" />
   <Icon v-else-if="mappedLang === 'md'" name="simple-icons:markdown" class="h-4 w-4" />
   <Icon v-else-if="mappedLang === 'mdc'" name="simple-icons:mdx" class="h-4 w-4" />
-  <Icon v-else-if="mappedLang === 'shell'" name="simple-icons:zsh" class="h-4 w-4" />
+  <Icon v-else-if="mappedLang === 'shell'" name="simple-icons:gnubash" class="h-4 w-4" />
   <Icon v-else-if="mappedLang === 'c'" name="simple-icons:c" class="h-4 w-4" />
   <Icon v-else-if="mappedLang === 'cpp'" name="simple-icons:cplusplus" class="h-4 w-4" />
   <Icon v-else-if="mappedLang === 'tsx'" name="simple-icons:react" class="h-4 w-4" />
@@ -38,6 +38,7 @@ const mappedLanguages = {
   postcss: "postcss",
   markdown: "md",
   bash: "shell",
+  batch: "shell",
   zsh: "shell",
   sh: "shell",
   "c++": "cpp",

@@ -25,11 +25,13 @@
         "@nuxtjs/tailwindcss": "^6.12.1",
         "@vueuse/core": "^10.11.0",
         "@vueuse/nuxt": "^10.11.0",
+        "medium-zoom": "^1.1.0",
         "nuxt": "^3.12.4",
         "reading-time": "^1.5.0",
         "rehype-katex": "^7.0.0",
         "rehype-twemoji": "file:./mdplugins/rehype-twemoji",
         "remark-disemote": "file:./mdplugins/remark-disemote",
+        "remark-heads": "file:./mdplugins/remark-heads",
         "remark-math": "^6.0.0",
         "remark-subsup": "file:./mdplugins/remark-subsup",
         "remark-typography": "file:./mdplugins/remark-typography"
