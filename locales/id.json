@@ -35,6 +35,14 @@
     "prevPost": "Artikel Sebelumnya",
     "nextPost": "Artikel Selanjutnya",
     "missing": "Konten tidak ditemukan",
-    "missingNotice": "Konten yang anda akses tidak dapat ditemukan, tetapi ada variasi pada Bahasa lain"
+    "missingNotice": "Konten yang anda akses tidak dapat ditemukan, tetapi ada variasi pada Bahasa lain",
+    "noTags": "Tidak ada tagar yang terdaftar"
+  },
+  "pagination": {
+    "prev": "Sebelumnya",
+    "next": "Selanjutnya"
+  },
+  "navigation": {
+    "pageOf": "dari"
   }
 }

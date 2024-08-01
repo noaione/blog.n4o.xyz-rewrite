@@ -3,6 +3,7 @@
     v-if="postsResponse?.data && postsResponse.data.length > 0"
     :title="$t('nav.blog')"
     :data="postsResponse.data"
+    :pagination="postsResponse.pagination"
   />
   <div
     v-else-if="postsResponse?.data && !postsResponse.data.length"

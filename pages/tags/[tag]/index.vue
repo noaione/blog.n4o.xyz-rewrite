@@ -3,6 +3,8 @@
     v-if="tagsResponse?.data && tagsResponse.data.length > 0"
     :title="$t('nav.tags')"
     :data="tagsResponse.data"
+    :tags="actualTag"
+    :pagination="tagsResponse.pagination"
   />
   <div
     v-else-if="tagsResponse?.data && !tagsResponse.data.length"
@@ -36,7 +38,7 @@ const actualTag = firstTag(tag);
 
 const query: ContentTagsPagedQueryParam = {
   locale: locale.value,
-  limit: 10,
+  limit: 5,
   page: 1,
   tag: actualTag,
 };

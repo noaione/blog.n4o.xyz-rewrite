@@ -2,7 +2,7 @@
   <div class="divide-y">
     <div class="space-y-2 pb-8 pt-6 md:space-y-5">
       <p
-        v-if="isTags"
+        v-if="tags"
         class="font-variable text-lg uppercase leading-3 tracking-wider text-gray-600 variation-weight-bold dark:text-gray-400"
       >
         {{ $t("nav.tags") }}
@@ -10,10 +10,10 @@
       <h1
         class="md:leading-14 font-variable text-3xl font-extrabold leading-9 tracking-tight text-gray-900 variation-weight-bold dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl"
         :class="{
-          lowercase: isTags,
+          lowercase: tags,
         }"
       >
-        {{ isTags ? `#${title}` : title }}
+        {{ tags ? `#${tags}` : title }}
       </h1>
       <!-- search here -->
       <!-- <div class="relative max-w-lg" /> -->
@@ -22,14 +22,22 @@
       <PostsListingContent v-for="post in data" :key="post._id" :data="post" />
     </ul>
   </div>
+  <PostsPagination :navigation="pagination" :base-url="baseUrl" :page="curPage" />
 </template>
 
 <script setup lang="ts">
-import type { ContentPagedQuery } from "~/server/api/content-paged.get";
+import type { ContentPagedQuery, ContentPagedResponse } from "~/server/api/content-paged.get";
 
-defineProps<{
+const props = defineProps<{
   data: ContentPagedQuery[];
   title: string;
-  isTags?: boolean;
+  tags?: string;
+  pagination: ContentPagedResponse["pagination"];
 }>();
+
+const curPage = ref(props.pagination.page);
+
+const baseUrl = computed(() => {
+  return props.tags ? `/tags/${props.tags}` : "/posts";
+});
 </script>

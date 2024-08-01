@@ -34,6 +34,14 @@
     "prevPost": "Previous Article",
     "nextPost": "Next Article",
     "missing": "Content not found",
-    "missingNotice": "The content you're trying to access is unavailable, but there is an alternative version in another languages"
+    "missingNotice": "The content you're trying to access is unavailable, but there is an alternative version in another languages",
+    "noTags": "No registered tags found"
+  },
+  "pagination": {
+    "prev": "Previous",
+    "next": "Next"
+  },
+  "navigation": {
+    "pageOf": "of"
   }
 }
