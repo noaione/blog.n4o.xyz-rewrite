@@ -27,6 +27,7 @@ export default defineEventHandler(async (event) => {
         $ne: false,
       },
       _contentType: "blog",
+      _source: "content",
     })
     .only(["title", "_id", "_path", "slug"])
     .sort({

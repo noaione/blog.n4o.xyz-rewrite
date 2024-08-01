@@ -112,13 +112,17 @@ export default defineNuxtConfig({
     },
   },
   content: {
-    // sources: {
-    //   content: {
-    //     driver: "fs",
-    //     prefix: "/blog",
-    //     base: "content",
-    //   },
-    // },
+    sources: {
+      content: {
+        driver: "fs",
+        base: "content",
+      },
+      data: {
+        driver: "fs",
+        prefix: "/_data",
+        base: "data",
+      },
+    },
     locales: ["en", "id", "ja"],
     defaultLocale: "id",
     highlight: {

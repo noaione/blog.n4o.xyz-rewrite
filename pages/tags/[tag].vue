@@ -1,10 +1,10 @@
 <template>
-  <pre>{{ tags }}</pre>
+  <pre>{{ tagsResponse }}</pre>
 </template>
 
 <script setup lang="ts">
-import type { ContentPagedQuery } from "~/server/api/content-paged";
-import type { ContentTagsPagedQueryParam } from "~/server/api/content-tags";
+import type { ContentPagedResponse } from "~/server/api/content-paged.get";
+import type { ContentTagsPagedQueryParam } from "~/server/api/content-tags.get";
 
 const {
   params: { tag },
@@ -32,8 +32,8 @@ if (runtimeConfig.public.productionMode) {
   query.draft = false;
 }
 
-const { data: tags } = await useAsyncData(`blog-tags-homebase-${locale.value}-${actualTag}`, () =>
-  $fetch<ContentPagedQuery>("/api/content-tags", {
+const { data: tagsResponse } = await useAsyncData(`blog-tags-homebase-${locale.value}-${actualTag}`, () =>
+  $fetch<ContentPagedResponse>("/api/content-tags", {
     method: "GET",
     query: query,
   })

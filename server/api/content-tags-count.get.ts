@@ -1,5 +1,5 @@
-/* eslint-disable @stylistic/indent */
 import { serverQueryContent } from "#content/server";
+import { castBooleanNull } from "~/utils/query";
 import { ExtendedParsedContent } from "../plugins/content";
 
 export interface TagsResponse {
@@ -8,18 +8,15 @@ export interface TagsResponse {
 
 export default defineEventHandler(async (event) => {
   const { locale, draft } = getQuery(event) || {};
-  const isDraft = Boolean(draft);
+  const isDraft = castBooleanNull(draft?.toString());
 
   const data = await serverQueryContent<ExtendedParsedContent>(event)
     .where({
       _locale: locale?.toString(),
-      _draft: draft
-        ? isDraft
-        : {
-            $in: [true, false],
-          },
       _partial: false,
       _contentType: "blog",
+      _source: "content",
+      ...(isDraft === null ? { _draft: { $in: [true, false] } } : { _draft: isDraft }),
     })
     .only(["slug", "tags"])
     .sort({

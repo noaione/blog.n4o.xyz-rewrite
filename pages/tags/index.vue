@@ -3,7 +3,7 @@
 </template>
 
 <script setup lang="ts">
-import type { TagsResponse } from "~/server/api/content-tags-count";
+import type { TagsResponse } from "~/server/api/content-tags-count.get";
 
 const { locale, t } = useI18n();
 const runtimeConfig = useRuntimeConfig();

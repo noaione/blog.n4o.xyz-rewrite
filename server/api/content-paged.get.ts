@@ -1,5 +1,5 @@
-/* eslint-disable @stylistic/indent */
 import { serverQueryContent } from "#content/server";
+import { castBooleanNull } from "~/utils/query";
 import { ExtendedParsedContent } from "../plugins/content";
 
 function intoNumber(value: string | undefined) {
@@ -25,6 +25,16 @@ export type ContentPagedQuery = Pick<
   "_id" | "_draft" | "_path" | "title" | "description" | "excerpt" | "date" | "image" | "tags" | "slug"
 >;
 
+export interface ContentPagedResponse {
+  data: ContentPagedQuery[];
+  pagination: {
+    total: number;
+    limit: number;
+    page: number;
+    totalPage: number;
+  };
+}
+
 export interface ContentPagedQueryParam {
   locale: string;
   draft?: boolean;
@@ -34,30 +44,45 @@ export interface ContentPagedQueryParam {
 
 export default defineEventHandler(async (event) => {
   const { locale, draft, limit, page } = getQuery(event) || {};
-  const isDraft = Boolean(draft);
+  const isDraft = castBooleanNull(draft?.toString());
   const limitNum = intoNumber(limit?.toString()) || 10;
+  const actualLimit = limitNum < 1 ? 1 : limitNum;
   // Non-zero-based page number
   const pageNum = intoNumber(page?.toString()) || 1;
-  const skipAmount = getSkipNum(pageNum, limitNum < 1 ? 1 : limitNum);
+  const skipAmount = getSkipNum(pageNum, actualLimit);
 
   const data = await serverQueryContent(event)
     .where({
       _locale: locale?.toString(),
-      _draft: draft
-        ? isDraft
-        : {
-            $in: [true, false],
-          },
       _partial: false,
       _contentType: "blog",
+      _source: "content",
+      ...(isDraft === null ? { _draft: { $in: [true, false] } } : { _draft: isDraft }),
     })
     .only(["_id", "_draft", "_path", "title", "description", "excerpt", "date", "image", "tags", "slug"])
     .sort({
       date: -1,
     })
-    .limit(limitNum < 1 ? 1 : limitNum)
+    .limit(actualLimit)
     .skip(skipAmount)
     .find();
 
-  return data;
+  const totalData = await serverQueryContent(event)
+    .where({
+      _locale: locale?.toString(),
+      _partial: false,
+      _contentType: "blog",
+      ...(isDraft === null ? { _draft: { $in: [true, false] } } : { _draft: isDraft }),
+    })
+    .count();
+
+  return {
+    data,
+    pagination: {
+      total: totalData,
+      limit: actualLimit,
+      page: pageNum,
+      totalPage: Math.ceil(totalData / actualLimit),
+    },
+  };
 });

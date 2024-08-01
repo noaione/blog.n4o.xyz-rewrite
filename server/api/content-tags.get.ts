@@ -1,6 +1,6 @@
-/* eslint-disable @stylistic/indent */
 import { serverQueryContent } from "#content/server";
-import { ContentPagedQueryParam } from "./content-paged";
+import { castBooleanNull } from "~/utils/query";
+import { ContentPagedQueryParam } from "./content-paged.get";
 
 function intoNumber(value: string | undefined) {
   if (!value) {
@@ -26,9 +26,10 @@ export interface ContentTagsPagedQueryParam extends ContentPagedQueryParam {
 
 export default defineEventHandler(async (event) => {
   const { locale, draft, tag, limit, page } = getQuery(event) || {};
-  const isDraft = Boolean(draft);
+  const isDraft = castBooleanNull(draft?.toString());
   const tagCurrent = tag?.toString();
   const limitNum = intoNumber(limit?.toString()) || 10;
+  const actualLimit = limitNum < 1 ? 1 : limitNum;
   // Non-zero-based page number
   const pageNum = intoNumber(page?.toString()) || 1;
   const skipAmount = getSkipNum(pageNum, limitNum < 1 ? 1 : limitNum);
@@ -43,24 +44,41 @@ export default defineEventHandler(async (event) => {
   const data = await serverQueryContent(event)
     .where({
       _locale: locale?.toString(),
-      _draft: draft
-        ? isDraft
-        : {
-            $in: [true, false],
-          },
       _partial: false,
       _contentType: "blog",
+      ...(isDraft === null ? { _draft: { $in: [true, false] } } : { _draft: isDraft }),
       tags: {
         $contains: tagCurrent,
       },
+      _source: "content",
     })
     .only(["_id", "_draft", "_path", "title", "description", "excerpt", "date", "image", "tags", "slug"])
     .sort({
       date: -1,
     })
-    .limit(limitNum < 1 ? 1 : limitNum)
+    .limit(actualLimit)
     .skip(skipAmount)
     .find();
 
-  return data;
+  const totalData = await serverQueryContent(event)
+    .where({
+      _locale: locale?.toString(),
+      _partial: false,
+      _contentType: "blog",
+      ...(isDraft === null ? { _draft: { $in: [true, false] } } : { _draft: isDraft }),
+      tags: {
+        $contains: tagCurrent,
+      },
+    })
+    .count();
+
+  return {
+    data,
+    pagination: {
+      total: totalData,
+      limit: actualLimit,
+      page: pageNum,
+      totalPage: Math.ceil(totalData / actualLimit),
+    },
+  };
 });

@@ -1,6 +1,9 @@
 <template>
-  <PostsListing v-if="posts !== null && posts.length > 0" :data="posts" />
-  <div v-else-if="posts !== null && !posts.length" class="my-4 flex flex-col items-center justify-center px-2">
+  <PostsListing v-if="postsResponse?.data && postsResponse.data.length > 0" :data="postsResponse.data" />
+  <div
+    v-else-if="postsResponse?.data && !postsResponse.data.length"
+    class="my-4 flex flex-col items-center justify-center px-2"
+  >
     <h2 class="font-variable mb-2 text-center text-2xl variation-weight-bold">{{ $t("blog.noPosts") }}</h2>
     <NuxtLink :to="localePath('/')" class="normal-link font-variable glow-text glow-shadow variation-weight-medium">
       {{ $t("blog.backHome") }}
@@ -9,7 +12,7 @@
 </template>
 
 <script setup lang="ts">
-import type { ContentPagedQuery, ContentPagedQueryParam } from "~/server/api/content-paged";
+import type { ContentPagedQueryParam, ContentPagedResponse } from "~/server/api/content-paged.get";
 
 const { locale, t } = useI18n();
 const localePath = useLocalePath();
@@ -26,8 +29,8 @@ if (runtimeConfig.public.productionMode) {
   query.draft = false;
 }
 
-const { data: posts } = await useAsyncData(`v2-blog-posts-homebase-${locale.value}`, () =>
-  $fetch<ContentPagedQuery[]>("/api/content-paged", {
+const { data: postsResponse } = await useAsyncData(`v2-blog-posts-homebase-${locale.value}`, () =>
+  $fetch<ContentPagedResponse>("/api/content-paged", {
     method: "GET",
     query: query,
   })

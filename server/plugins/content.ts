@@ -98,7 +98,9 @@ interface BeforeParse {
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook("content:file:beforeParse", (file: BeforeParse) => {
-    if (file._id.endsWith(".md") && !file._id.startsWith("content:blog:")) {
+    console.log(file._id);
+
+    if (file._id.endsWith(".md") && !file._id.startsWith("content:")) {
       // Formatted content:LANG:anypath:actualpath
       const splitted = file._id.split(":");
       const path = splitted[splitted.length - 1];
@@ -111,7 +113,7 @@ export default defineNitroPlugin((nitroApp) => {
   });
 
   nitroApp.hooks.hook("content:file:afterParse", (file) => {
-    if (file._id.endsWith(".md") && file.body && !file._id.startsWith("content:blog:")) {
+    if (file._id.endsWith(".md") && file.body && file._source === "content") {
       const keys = Object.keys(file);
       const missingKeys = expectedKeys.filter((key) => !keys.includes(key));
       const splitIds = file._id.split(":");
