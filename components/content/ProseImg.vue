@@ -44,6 +44,10 @@ const isTwemoji = computed(() => {
   return props.src?.includes("gh/jdecked/twemoji");
 });
 const isStandardEmote = computed(() => {
+  if (props.alt.startsWith("Discord Emote:")) {
+    return true;
+  }
+
   if (props.ariaLabel?.startsWith("emoticon") || props.ariaLabel?.startsWith("Twitter")) {
     return true;
   }

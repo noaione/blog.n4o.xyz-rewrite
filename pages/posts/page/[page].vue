@@ -1,5 +1,9 @@
 <template>
-  <PostsListing v-if="postsResponse?.data && postsResponse.data.length > 0" :data="postsResponse.data" />
+  <PostsListing
+    v-if="postsResponse?.data && postsResponse.data.length > 0"
+    :title="$t('nav.blog')"
+    :data="postsResponse.data"
+  />
   <div
     v-else-if="postsResponse?.data && !postsResponse.data.length"
     class="my-4 flex flex-col items-center justify-center px-2"

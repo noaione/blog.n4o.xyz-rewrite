@@ -1,14 +1,9 @@
 <template>
   <header className="pt-6 xl:pb-6 flex flex-col items-center">
-    <div v-if="parsedDate" className="space-y-1 text-center">
+    <div v-if="publishedAt" className="space-y-1 text-center">
       <dl className="space-y-10">
         <div class="mb-3">
-          <dt className="sr-only">{{ $t("blog.publishAt") }}</dt>
-          <dd className="text-base font-variable variation-weight-medium leading-6 text-gray-500 dark:text-gray-400">
-            <time :datetime="parsedDate.toISOString()">
-              {{ parsedDate.toLocaleDateString(locale, postDateTemplate) }}
-            </time>
-          </dd>
+          <PostPublication :published-at="publishedAt" />
         </div>
       </dl>
     </div>
@@ -46,12 +41,6 @@ const props = withDefaults(
 );
 
 const views = ref(0);
-const parsedDate = computed(() => {
-  if (props.publishedAt) {
-    return new Date(props.publishedAt);
-  }
-});
-
 const { locale } = useI18n();
 const dayjs = useDayjs();
 
@@ -64,13 +53,6 @@ const parsedReadingTime = computed(() => {
     };
   }
 });
-
-const postDateTemplate: Intl.DateTimeFormatOptions = {
-  weekday: "long",
-  year: "numeric",
-  month: "long",
-  day: "numeric",
-};
 
 // onMounted(() => {
 //   // request views to plausible

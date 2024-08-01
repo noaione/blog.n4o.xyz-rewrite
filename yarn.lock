@@ -10322,10 +10322,10 @@ __metadata:
 
 "remark-disemote@file:./mdplugins/remark-disemote::locator=n4o-blog-nuxt%40workspace%3A.":
   version: 0.0.1
-  resolution: "remark-disemote@file:./mdplugins/remark-disemote#./mdplugins/remark-disemote::hash=298c5a&locator=n4o-blog-nuxt%40workspace%3A."
+  resolution: "remark-disemote@file:./mdplugins/remark-disemote#./mdplugins/remark-disemote::hash=308e6c&locator=n4o-blog-nuxt%40workspace%3A."
   dependencies:
     unist-util-visit: "npm:^5.0.0"
-  checksum: 10c0/c2e93f7958f309cab9fd886892df124cbae06b19c983dcc2a0c0896227b1cf5b977bc6a05339189dc3f9357aab1b6a1d3f025ac72f32d96ff703754a7b9e6083
+  checksum: 10c0/129e79388c098a71ca7736344d4142da701a7955ce11351b42a5309f4ba0190ccad651c84b988fe14b99f75efadc49f1aad43012078df3d69e3207a5dde9afae
   languageName: node
   linkType: hard
 

@@ -39,7 +39,7 @@ export default function remarkDisEmote() {
           const newNode = {
             type: "image",
             url: sel.url,
-            alt: `:${sel.name}:`,
+            alt: `Discord Emote: ${sel.name}`,
             title: sel.name,
             // add class for styling
             data: {

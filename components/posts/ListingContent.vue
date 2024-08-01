@@ -1,25 +1,45 @@
 <template>
-  <div class="flex w-[36rem] flex-grow-0 flex-col">
-    <div
-      class="group flex flex-col gap-2 rounded-md border-[1px] border-gray-300 bg-gray-100 dark:border-gray-700 dark:bg-gray-800"
-    >
-      <div v-if="data.image" class="flex aspect-video bg-white px-2 py-2 dark:bg-gray-900">
-        <img :src="data.image" alt="Post image" class="aspect-video h-48 w-auto object-cover" />
+  <li class="py-4">
+    <article class="space-y-2 xl:grid xl:grid-cols-4 xl:items-baseline xl:space-y-0">
+      <dl class="self-start">
+        <PostPublication :published-at="data.date!" />
+      </dl>
+      <div class="space-y-3 xl:col-span-3">
+        <div>
+          <h3 class="font-variable mb-2 text-2xl leading-8 tracking-tight variation-weight-bold">
+            <div v-if="data.image" class="prose mb-2 dark:prose-invert">
+              <NuxtImg :src="data.image" class="max-w-full" alt="Featured blog post image" />
+            </div>
+            <NuxtLink :to="slugUrl" class="normal-link glow-text-md glow-shadow">
+              <span v-if="data._draft">(<span role="img" aria-label="construction sign">🚧</span> Draft)</span>
+              {{ data.title }}
+            </NuxtLink>
+          </h3>
+          <div v-if="data.tags.length > 0" class="flex flex-wrap">
+            <NuxtLink
+              v-for="tag in data.tags"
+              :key="tag"
+              class="normal-link font-variable mb-0.5 mr-2 text-sm lowercase tracking-tight text-primary-500 variation-weight-medium"
+              :href="localePath(`/tags/${tag}`)"
+            >
+              #{{ tag }}
+            </NuxtLink>
+          </div>
+        </div>
+        <div class="prose max-w-none text-gray-500 dark:prose-invert dark:text-gray-400">
+          <ContentRenderer v-if="data.excerpt" :value="data.excerpt">
+            <ContentRendererMarkdown :value="data.excerpt" />
+          </ContentRenderer>
+          <p v-else-if="data.description">{{ data.description }}</p>
+          <p v-else class="font-variable variation-weight-medium variation-slant-[-10]">No description</p>
+        </div>
       </div>
-      <hr v-if="data.image" />
-      <div class="flex flex-col px-3 py-2">
-        <NuxtLink :to="slugUrl">
-          <h2 class="font-variable text-lg decoration-dashed glow-text-md variation-weight-bold hover:underline">
-            {{ data.title }}
-          </h2>
-        </NuxtLink>
-      </div>
-    </div>
-  </div>
+    </article>
+  </li>
 </template>
 
 <script setup lang="ts">
-import type { ContentPagedQuery } from "~/server/api/content-paged";
+import type { ContentPagedQuery } from "~/server/api/content-paged.get";
 
 const props = defineProps<{
   data: ContentPagedQuery;
@@ -27,15 +47,7 @@ const props = defineProps<{
 
 const localePath = useLocalePath();
 
-function formatIntoSlug(id: string) {
-  // get the last :
-  const lastColon = id.lastIndexOf(":");
-
-  // get anything after, strip .md from the end
-  return id.substring(lastColon + 1).replace(/\.md$/, "");
-}
-
 const slugUrl = computed(() => {
-  return localePath(`/posts/${formatIntoSlug(props.data._id)}`);
+  return localePath(`/posts/${props.data.slug}`);
 });
 </script>

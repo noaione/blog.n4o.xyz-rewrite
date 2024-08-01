@@ -1,4 +1,3 @@
-import { find } from "unist-util-find";
 import { visit } from "unist-util-visit";
 import { statSync } from "node:fs";
 import { join } from "node:path";
@@ -7,8 +6,6 @@ import readingTime, { ReadTimeResults } from "reading-time";
 import authorLists from "~/data/author.json";
 
 const filenameRegex = /(?<date>[\d]{4}-[\d]{2}-[\d]{2})-(?<fn>.*)/;
-
-const expectedKeys = ["title", "description", "image", "tags", "date", "lastmod"];
 
 function getFileDate(file: string) {
   const stats = statSync(file);
@@ -112,8 +109,6 @@ export default defineNitroPlugin((nitroApp) => {
 
   nitroApp.hooks.hook("content:file:afterParse", (file) => {
     if (file._id.endsWith(".md") && file.body && file._source === "content") {
-      const keys = Object.keys(file);
-      const missingKeys = expectedKeys.filter((key) => !keys.includes(key));
       const splitIds = file._id.split(":");
       const idPrefix = splitIds.slice(0, splitIds.length - 1);
       const pathActual = splitIds[splitIds.length - 1];
@@ -138,16 +133,9 @@ export default defineNitroPlugin((nitroApp) => {
         file.lastmod = ensureDateOr(file.lastmod, modified);
       }
 
-      if (missingKeys.includes("image")) {
-        const imgData = find<MarkdownNode>(file.body, (node: MarkdownNode) => node.type === "img");
-
-        if (imgData) {
-          file.image = imgData.props?.src;
-        }
-      }
-
       file.tags = ensureArrayOfString(file.tags);
-      file._draft = file._draft ?? Boolean(file.draft);
+      console.log(file._draft, file.draft);
+      file._draft = file._draft || Boolean(file.draft);
       file._contentType = "blog";
 
       file.readingTime = calculateReadingTime(file.body);

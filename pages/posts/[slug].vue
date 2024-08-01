@@ -4,8 +4,12 @@
       <div v-if="contentResponse?.content._draft" class="my-6 text-center">
         <div class="space-y-1 text-center">
           <div class="mb-3 text-base font-medium leading-6 text-gray-500 dark:text-gray-400">
-            <div class="text-red-500 dark:text-red-400">{{ $t("blog.draft") }}</div>
-            {{ $t("blog.draftNotice") }}
+            <div class="font-variable text-lg text-red-500 variation-weight-bold dark:text-red-400">
+              {{ $t("blog.draft") }}
+            </div>
+            <div class="font-variable text-sm tracking-tight opacity-90 variation-weight-medium">
+              {{ $t("blog.draftNotice") }}
+            </div>
           </div>
         </div>
       </div>
