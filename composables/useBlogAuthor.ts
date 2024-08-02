@@ -48,7 +48,7 @@ function makeSocialAt(social: string, type: "twitter" | "github") {
   }
 }
 
-function formatAuthor(author: AuthorRaw, lang: string, defaultLang: string) {
+function formatAuthor(author: AuthorRaw, lang: string, defaultLang: string): Author {
   const firstRecord = author.bio[Object.keys(author.bio)[0]];
 
   return {

@@ -1,6 +1,8 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
 
+import type { LocaleObject } from "@nuxtjs/i18n";
+
 const mathMLIgnore = (tag: string) => {
   // math related tags
   const mathTags = [
@@ -73,6 +75,29 @@ const mathMLIgnore = (tag: string) => {
   return mathTags.includes(tag.toLowerCase());
 };
 
+const locales: LocaleObject[] = [
+  {
+    code: "id",
+    iso: "id-ID",
+    name: "Bahasa Indonesia",
+    file: "id.json",
+  },
+  {
+    code: "en",
+    iso: "en-US",
+    name: "English",
+    file: "en.json",
+  },
+  {
+    code: "ja",
+    iso: "ja-JP",
+    name: "日本語",
+    file: "ja.json",
+  },
+];
+
+const defaultLocale = "id";
+
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   devtools: { enabled: true },
@@ -91,6 +116,17 @@ export default defineNuxtConfig({
   routeRules: {
     "/": { prerender: true },
     "/about": { prerender: true },
+  },
+  nitro: {
+    prerender: {
+      crawlLinks: true,
+      routes: [
+        "/sitemap.xml",
+        "/sitemap.xsl",
+        ...locales.map((locale) => `/sitemap/${locale.code}.xml`),
+        ...locales.map((locale) => `/feeds/${locale.code}.xml`),
+      ],
+    },
   },
   app: {
     head: {
@@ -120,8 +156,8 @@ export default defineNuxtConfig({
       productionUrl: import.meta.env.DOMAIN_URL || "https://blog.n4o.xyz",
     },
     i18n: {
-      locales: ["id", "en", "ja"],
-      defaultLocale: "id",
+      locales: locales.map((locale) => locale.code),
+      defaultLocale,
     },
     // Runtime/build time current directory
     currentDir: dirname(fileURLToPath(import.meta.url)),
@@ -138,8 +174,8 @@ export default defineNuxtConfig({
         base: "data",
       },
     },
-    locales: ["id", "en", "ja"],
-    defaultLocale: "id",
+    locales: locales.map((locale) => locale.code),
+    defaultLocale,
     highlight: {
       theme: {
         default: "rose-pine-dawn",
@@ -186,31 +222,12 @@ export default defineNuxtConfig({
   },
   i18n: {
     strategy: "prefix_except_default",
-    defaultLocale: "id",
     baseUrl: process.env.BASE_URL || "http://localhost:3000",
     // Disable, let the user choose the language
     detectBrowserLanguage: false,
     langDir: "locales",
-    locales: [
-      {
-        code: "id",
-        iso: "id-ID",
-        name: "Bahasa Indonesia",
-        file: "id.json",
-      },
-      {
-        code: "en",
-        iso: "en-US",
-        name: "English",
-        file: "en.json",
-      },
-      {
-        code: "ja",
-        iso: "ja-JP",
-        name: "日本語",
-        file: "ja.json",
-      },
-    ],
+    defaultLocale,
+    locales,
   },
   fonts: {
     families: [
@@ -238,10 +255,10 @@ export default defineNuxtConfig({
     safelistColors: ["fiord", "gray", "white", "black"],
   },
   dayjs: {
-    locales: ["en", "id", "ja"],
+    locales: locales.map((locale) => locale.code),
     plugins: ["utc", "timezone", "duration"],
-    defaultLocale: "id",
     defaultTimezone: "Asia/Jakarta",
+    defaultLocale,
   },
   compatibilityDate: "2024-07-28",
   mdc: {
@@ -254,30 +271,13 @@ export default defineNuxtConfig({
       },
     },
   },
-  // sitemap: {
-  //   sitemapName: "sitemap.xml",
-  //   sitemaps: {
-  //     id: {
-  //       exclude: ["/_nuxt/**", "/_**"],
-  //       includeAppSources: false,
-  //       sitemapName: "id",
-  //       sources: ["/api/__sitemap__/posts?lang=id", "/api/__sitemap__/tags?lang=id", "/api/__sitemap__/all?lang=id"],
-  //     },
-  //     en: {
-  //       exclude: ["/_nuxt/**", "/_**"],
-  //       includeAppSources: false,
-  //       sitemapName: "en",
-  //       sources: ["/api/__sitemap__/posts?lang=en", "/api/__sitemap__/tags?lang=en", "/api/__sitemap__/all?lang=en"],
-  //     },
-  //     ja: {
-  //       exclude: ["/_nuxt/**", "/_**"],
-  //       includeAppSources: false,
-  //       sitemapName: "ja",
-  //       sources: ["/api/__sitemap__/posts?lang=ja", "/api/__sitemap__/tags?lang=ja", "/api/__sitemap__/all?lang=ja"],
-  //     },
-  //   },
-  //   excludeAppSources: ["nuxt:pages", "nuxt:prerender", "nuxt:route-rules"],
-  //   cacheMaxAgeSeconds: import.meta.env.DEV ? 0 : 3600,
-  // },
+  hooks: {
+    "nitro:config": () => {
+      // verify defaultLocale is in locales early
+      if (!locales.map((locale) => locale.code).includes(defaultLocale)) {
+        throw new Error(`defaultLocale ${defaultLocale} is not in locales`);
+      }
+    },
+  },
 });
 

@@ -10,8 +10,8 @@ tags:
   - devopshell
 ---
 
-<div className="text-center">
-  <p className="italic">Postigan ini merupakan pos pertama dari seri DevOps Hell</p>
+<div class="text-center">
+  <p class="italic">Postigan ini merupakan pos pertama dari seri DevOps Hell</p>
 </div>
 
 naoTimes adalah bot Discord yang tak buat untuk tracking garapan Fansub, Bot ini juga bisa melakukan berbagai hal lain.
@@ -54,7 +54,7 @@ Stepnya adalah mengambil commit terbaru, masuk ke Virtual Environment, install r
 
 Dengan script itu, saya cukup commit dengan teks `redeploy` dimanapun, dan script itu akan dieksekusi oleh Github Actions. 🚀
 
-![stonks](/static/images/naotimes-ci-cd/01_stonks.png)
+![stonks](/assets/images/naotimes-ci-cd/01_stonks.png)
 
 Next step! Buat repo sync antara repository private dan repository public!
 
@@ -140,11 +140,11 @@ create_pr(branch_name, strftime)
 
 Script akan dieksekusi jika ada kata `sync-repo` di commit.
 
-![stonks](/static/images/naotimes-ci-cd/02_stonksmk2.png)
+![stonks](/assets/images/naotimes-ci-cd/02_stonksmk2.png)
 
 Dan PR-nya:
 
-![pr sample](/static/images/naotimes-ci-cd/03_samplepr.png)
+![pr sample](/assets/images/naotimes-ci-cd/03_samplepr.png)
 
 :RushiaArmsSway: :RushiaArmsSway: :RushiaArmsSway: :RushiaArmsSway:
 

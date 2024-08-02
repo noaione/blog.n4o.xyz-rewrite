@@ -1,7 +1,7 @@
 <template>
-  <header className="pt-6 xl:pb-6 flex flex-col items-center">
-    <div v-if="publishedAt" className="space-y-1 text-center">
-      <dl className="space-y-10">
+  <header class="flex flex-col items-center pt-6 xl:pb-6">
+    <div v-if="publishedAt" class="space-y-1 text-center">
+      <dl class="space-y-10">
         <div class="mb-3">
           <PostPublication :published-at="publishedAt" />
         </div>
@@ -9,7 +9,7 @@
     </div>
     <div>
       <h1 class="post-title text-center">{{ title }}</h1>
-      <p className="text-sm mt-1 text-gray-600 dark:text-gray-400 flex flex-row items-center justify-center">
+      <p class="mt-1 flex flex-row items-center justify-center text-sm text-gray-600 dark:text-gray-400">
         <template v-if="parsedReadingTime">
           <span :aria-value="parsedReadingTime.time.toString()">
             {{ $t("blog.readTime", [parsedReadingTime.localized]) }}

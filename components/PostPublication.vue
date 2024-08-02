@@ -1,6 +1,6 @@
 <template>
-  <dt className="sr-only">{{ $t("blog.publishAt") }}</dt>
-  <dd className="text-base font-variable variation-weight-medium leading-6 text-gray-500 dark:text-gray-400">
+  <dt class="sr-only">{{ $t("blog.publishAt") }}</dt>
+  <dd class="font-variable text-base leading-6 text-gray-500 variation-weight-medium dark:text-gray-400">
     <time :datetime="parsedDate.toISOString()">
       {{ parsedDate.toLocaleDateString(locale, postDateTemplate) }}
     </time>

@@ -19,14 +19,11 @@
         </NuxtLink>
       </div>
     </div>
-    <div
-      v-if="navigation?.next || navigation?.prev"
-      className="flex justify-between py-4 xl:block xl:py-8 xl:space-y-8"
-    >
+    <div v-if="navigation?.next || navigation?.prev" class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
       <div v-if="navigation?.prev">
         <div>
           <h2
-            className="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
+            class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
           >
             {{ $t("blog.prevPost") }}
           </h2>
@@ -41,7 +38,7 @@
       <div v-if="navigation?.next">
         <div>
           <h2
-            className="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
+            class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
           >
             {{ $t("blog.nextPost") }}
           </h2>

@@ -26,7 +26,7 @@
           {{ $t("pagination.prev") }}
         </span>
       </button>
-      <span className="text-gray-700 dark:text-gray-300 font-variable variation-weight-semibold">
+      <span class="font-variable text-gray-700 variation-weight-semibold dark:text-gray-300">
         {{ `${navigation.page.toLocaleString()} ${$t("navigation.pageOf")} ${navigation.totalPage.toLocaleString()}` }}
       </span>
       <NuxtLink
@@ -72,8 +72,6 @@ const localePath = useLocalePath();
 
 const nextPage = computed(() => {
   const next = props.page + 1;
-
-  console.log(props.page, next, props.navigation.totalPage, props.navigation.totalPage < next);
 
   if (props.navigation.totalPage >= next) {
     return next;

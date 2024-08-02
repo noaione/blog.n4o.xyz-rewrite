@@ -13,13 +13,13 @@ Blog ini kalau situ gak tau sudah melewati 3x iterasi.
 Blog ini awalnya dibuat menggunakan tema Jekyll dan di hosting di GitHub.<br />
 Saya sendiri lupa sih pakai tema apaan untuk Blog awal itu, tapi blog itu lumayan enak untuk dipakai.
 
-![Tampilan lama blog](/static/images/blog-migration/blog-v1.png)
+![Tampilan lama blog](/assets/images/blog-migration/blog-v1.png)
 
 Blog itu dipakai dari 2019, dengan modifikasi oleh saya sendiri untuk nambah beberapa fitur tambahan seperti VideoJS.
 
 Setelah itu sekitar awal tahun 2021, saya pindah atau lebih tempatnya coba-coba Hugo, nemu theme yang lumayan enak yaitu [uBlogger](https://github.com/uPagge/uBlogger).
 
-![Tampilan blog dengan uBlogger dan Hugo](/static/images/blog-migration/blog-v2.png)
+![Tampilan blog dengan uBlogger dan Hugo](/assets/images/blog-migration/blog-v2.png)
 
 Menurut saya sendiri, uBlogger dan Hugo punya fitur yang lumayan enak. Tapi terlalu ribet untuk tak otak atik jadi gak terlalu melakukan banyak perubahan.
 

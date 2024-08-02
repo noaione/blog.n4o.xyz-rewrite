@@ -2,9 +2,9 @@
   <div
     class="flex flex-col items-start justify-start divide-y divide-gray-200 dark:divide-gray-700 md:mt-24 md:flex-row md:items-center md:justify-center md:space-x-6 md:divide-y-0"
   >
-    <div className="pt-6 pb-8 space-x-2 md:space-y-5">
+    <div class="space-x-2 pb-8 pt-6 md:space-y-5">
       <h1
-        className="text-3xl leading-9 tracking-normal text-gray-900 dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl md:leading-14 md:border-r-2 md:px-6 font-variable variation-weight-extrabold"
+        class="md:leading-14 font-variable text-3xl leading-9 tracking-normal text-gray-900 variation-weight-extrabold dark:text-gray-100 sm:text-4xl sm:leading-10 md:border-r-2 md:px-6 md:text-6xl"
       >
         {{ t("nav.tags") }}
       </h1>
@@ -63,8 +63,6 @@ const sortedTags = computed(() => {
     return Object.fromEntries(sortedKeys.map((key) => [key, tagar[key]]));
   }
 });
-
-console.log(sortedTags.value);
 
 useBlogHead({
   title: t("nav.tags"),
