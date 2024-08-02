@@ -26,4 +26,4 @@ jobs:
           yarn config set -H enableImmutableInstalls false
           yarn install
       - name: Build
-        run: yarn build
+        run: yarn generate
