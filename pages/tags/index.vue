@@ -66,5 +66,6 @@ const sortedTags = computed(() => {
 
 useBlogHead({
   title: t("nav.tags"),
+  description: t("desc.tagsHome"),
 });
 </script>

@@ -25,6 +25,7 @@ const {
 const { locale, t } = useI18n();
 const router = useRouter();
 const localePath = useLocalePath();
+const blogConfig = useBlogConfig();
 const runtimeConfig = useRuntimeConfig();
 
 function parsePage(page: string | string[]) {
@@ -72,5 +73,6 @@ const { data: postsResponse } = await useAsyncData(`v2-blog-posts-homebase-${loc
 
 useBlogHead({
   title: t("nav.blogPaged", [actualPage]),
+  description: t("desc.post", { name: blogConfig.value.title }),
 });
 </script>

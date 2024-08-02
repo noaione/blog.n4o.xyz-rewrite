@@ -13,7 +13,8 @@
     "blog": "Post",
     "tags": "Tagar",
     "goBack": "Kembali",
-    "blogPaged": "Post - Laman {0}"
+    "blogPaged": "Post - Laman {0}",
+    "tagsPaged": "Tagar - Laman {0}"
   },
   "blog": {
     "noPosts": "Tidak ada postingan",
@@ -44,5 +45,11 @@
   },
   "navigation": {
     "pageOf": "dari"
+  },
+  "desc": {
+    "post": "Semua postingan blog {name} dalam satu tempat!",
+    "tagsHome": "Semua koleksi tagar yang tersedia di blog ini.",
+    "tag": "Semua postingan dengan tagar #{tag}",
+    "about": "A simple information about this blog"
   }
 }

@@ -13,7 +13,8 @@
     "blog": "Post",
     "tags": "Tags",
     "goBack": "Go back",
-    "blogPaged": "Post - Page {0}"
+    "blogPaged": "Post - Page {0}",
+    "tagsPaged": "Tags - Laman {0}"
   },
   "blog": {
     "noPosts": "No posts",
@@ -43,5 +44,11 @@
   },
   "navigation": {
     "pageOf": "of"
+  },
+  "desc": {
+    "post": "All {name} blog posts in one place!",
+    "tagsHome": "The tags collection available in the blog.",
+    "tag": "All post tagged with #{tag}",
+    "about": "Sebuah informasi sederhana tentang blog ini"
   }
 }

@@ -9,14 +9,14 @@
     </div>
     <div>
       <h1 class="post-title text-center">{{ title }}</h1>
-      <p class="mt-1 flex flex-row items-center justify-center text-sm text-gray-600 dark:text-gray-400">
+      <p class="mt-2 flex flex-row items-center justify-center text-sm text-gray-600 dark:text-gray-400">
         <template v-if="parsedReadingTime">
           <span :aria-value="parsedReadingTime.time.toString()">
             {{ $t("blog.readTime", [parsedReadingTime.localized]) }}
           </span>
           <span class="mx-1">|</span>
         </template>
-        <Icon name="heroicons:eye" class="mr-1 inline-block h-4 w-4" aria-label="View Count" />
+        <Icon name="heroicons:eye-20-solid" class="mr-1 inline-block h-4 w-4" aria-label="View Count" />
         <span>{{ $t("blog.viewCount", [views.toLocaleString()]) }}</span>
       </p>
     </div>

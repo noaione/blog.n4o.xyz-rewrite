@@ -21,6 +21,7 @@ import type { ContentPagedQueryParam, ContentPagedResponse } from "~/server/api/
 
 const { locale, t } = useI18n();
 const localePath = useLocalePath();
+const blogConfig = useBlogConfig();
 const runtimeConfig = useRuntimeConfig();
 
 const query: ContentPagedQueryParam = {
@@ -43,5 +44,6 @@ const { data: postsResponse } = await useAsyncData(`v2-blog-posts-homebase-${loc
 
 useBlogHead({
   title: t("nav.blog"),
+  description: t("desc.post", { name: blogConfig.value.title }),
 });
 </script>

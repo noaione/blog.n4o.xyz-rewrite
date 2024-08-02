@@ -113,29 +113,21 @@ const { data: contentResponse, error } = await useAsyncData<ContentDataResponse,
 if (contentResponse.value?.content || error.value) {
   const content = contentResponse.value?.content;
 
-  useBlogHead({
-    title: content?.title || (error.value && error.value.statusCode === 404 ? "404" : "???"),
-    meta: [
-      {
-        hid: "description",
-        name: "description",
-        content: content?.description || (error.value && error.value.statusCode === 404 ? t("error.missing") : "???"),
-      },
-    ],
-  });
+  if (content) {
+    usePostHead(content);
+  } else {
+    useBlogHead({
+      title: error.value && error.value.statusCode === 404 ? "404" : "???",
+      description: error.value && error.value.statusCode === 404 ? t("error.missing") : "???",
+    });
+  }
 } else if ((contentResponse.value?.availableLocales?.length ?? 0) > 0) {
   const comma = locale.value === "ja" ? "、" : ", ";
   const availableParsed = contentResponse.value?.availableLocales.map((loc) => t(`languages.${loc}`)).join(comma);
 
   useBlogHead({
     title: t("blog.missing"),
-    meta: [
-      {
-        hid: "description",
-        name: "description",
-        content: t("blog.missingNotice") + ": " + availableParsed,
-      },
-    ],
+    description: t("blog.missingNotice") + ": " + availableParsed,
   });
 }
 </script>

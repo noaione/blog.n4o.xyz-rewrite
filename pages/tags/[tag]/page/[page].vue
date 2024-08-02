@@ -24,7 +24,7 @@ import type { ContentTagsPagedQueryParam } from "~/server/api/content-tags.get";
 const {
   params: { tag, page },
 } = useRoute();
-const { locale } = useI18n();
+const { locale, t } = useI18n();
 const router = useRouter();
 const runtimeConfig = useRuntimeConfig();
 const localePath = useLocalePath();
@@ -66,4 +66,9 @@ const { data: tagsResponse } = await useAsyncData(
       query: query,
     })
 );
+
+useBlogHead({
+  title: `#${actualTag} — ${t("nav.tagsPaged", [actualPage])}`,
+  description: t("desc.tag", { tag: actualTag }),
+});
 </script>

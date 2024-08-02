@@ -130,7 +130,98 @@ export default defineNuxtConfig({
   },
   app: {
     head: {
-      title: "Blog",
+      title: "N4O Blog",
+      meta: [
+        {
+          "http-equiv": "x-ua-compatible",
+          content: "IE=edge",
+        },
+        {
+          name: "apple-mobile-web-app-title",
+          content: "N4O Blog",
+        },
+        {
+          name: "apple-mobile-web-app-capable",
+          content: "yes",
+        },
+        {
+          name: "mobile-web-app-capable",
+          content: "yes",
+        },
+        {
+          name: "application-name",
+          content: "N4O Blog",
+        },
+        {
+          name: "msapplication-TileColor",
+          content: "#171717",
+        },
+        {
+          name: "msapplication-TileImage",
+          content: "/assets/favicons/mstile-150x150.png",
+        },
+      ],
+      link: [
+        {
+          rel: "shortcut icon",
+          href: "/favicon.ico",
+        },
+        {
+          rel: "apple-touch-icon",
+          sizes: "180x180",
+          href: "/assets/favicons/apple-touch-icon.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "512x512",
+          href: "/assets/favicons/android-chrome-512x512.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "192x192",
+          href: "/assets/favicons/android-chrome-192x192.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "96x96",
+          href: "/assets/favicons/android-chrome-96x96.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: "/assets/favicons/favicon-32x32.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "32x32",
+          href: "/assets/favicons/favicon-32x32.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          sizes: "16x16",
+          href: "/assets/favicons/favicon-16x16.png",
+        },
+        {
+          rel: "icon",
+          type: "image/png",
+          href: "/assets/favicons/android-chrome-192x192.png",
+        },
+        {
+          rel: "manifest",
+          href: "/site.webmanifest",
+        },
+        {
+          rel: "mask-icon",
+          href: "/assets/favicons/safari-pinned-tab.svg",
+          color: "#c2410c",
+        },
+      ],
     },
   },
   vue: {
@@ -222,7 +313,7 @@ export default defineNuxtConfig({
   },
   i18n: {
     strategy: "prefix_except_default",
-    baseUrl: process.env.BASE_URL || "http://localhost:3000",
+    baseUrl: import.meta.env.DOMAIN_URL || "http://localhost:4500",
     // Disable, let the user choose the language
     detectBrowserLanguage: false,
     langDir: "locales",

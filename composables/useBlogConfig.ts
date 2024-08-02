@@ -6,6 +6,7 @@ import jaConfig from "~/data/ja/config.json";
 export interface BlogConfig {
   title: string;
   description: string;
+  image: string;
 }
 
 const blogConfigs = {
