@@ -55,7 +55,7 @@ const actualPage = parsePage(page);
 
 const query: ContentPagedQueryParam = {
   locale: locale.value,
-  limit: 10,
+  limit: runtimeConfig.public.pagination.posts,
   page: actualPage,
 };
 

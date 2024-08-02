@@ -38,7 +38,7 @@ const actualTag = firstTag(tag);
 
 const query: ContentTagsPagedQueryParam = {
   locale: locale.value,
-  limit: 5,
+  limit: runtimeConfig.public.pagination.tags,
   page: 1,
   tag: actualTag,
 };

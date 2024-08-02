@@ -42,7 +42,7 @@ const parsedPage = Number.parseInt(actualPage, 10);
 
 const query: ContentTagsPagedQueryParam = {
   locale: locale.value,
-  limit: 5,
+  limit: runtimeConfig.public.pagination.tags,
   page: parsedPage,
   tag: actualTag,
 };
