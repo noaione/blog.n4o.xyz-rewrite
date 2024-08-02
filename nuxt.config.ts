@@ -1,3 +1,6 @@
+import { fileURLToPath } from "node:url";
+import { dirname } from "node:path";
+
 const mathMLIgnore = (tag: string) => {
   // math related tags
   const mathTags = [
@@ -87,6 +90,7 @@ export default defineNuxtConfig({
   ],
   routeRules: {
     "/": { prerender: true },
+    "/about": { prerender: true },
   },
   app: {
     head: {
@@ -109,7 +113,18 @@ export default defineNuxtConfig({
   runtimeConfig: {
     public: {
       productionMode: process.env.NODE_ENV === "production",
+      pagination: {
+        posts: 10,
+        tags: 5,
+      },
+      productionUrl: import.meta.env.DOMAIN_URL || "https://blog.n4o.xyz",
     },
+    i18n: {
+      locales: ["id", "en", "ja"],
+      defaultLocale: "id",
+    },
+    // Runtime/build time current directory
+    currentDir: dirname(fileURLToPath(import.meta.url)),
   },
   content: {
     sources: {
@@ -123,7 +138,7 @@ export default defineNuxtConfig({
         base: "data",
       },
     },
-    locales: ["en", "id", "ja"],
+    locales: ["id", "en", "ja"],
     defaultLocale: "id",
     highlight: {
       theme: {
@@ -178,16 +193,16 @@ export default defineNuxtConfig({
     langDir: "locales",
     locales: [
       {
-        code: "en",
-        iso: "en-US",
-        name: "English",
-        file: "en.json",
-      },
-      {
         code: "id",
         iso: "id-ID",
         name: "Bahasa Indonesia",
         file: "id.json",
+      },
+      {
+        code: "en",
+        iso: "en-US",
+        name: "English",
+        file: "en.json",
       },
       {
         code: "ja",
@@ -220,7 +235,7 @@ export default defineNuxtConfig({
     storageKey: "blog-color-mode",
   },
   ui: {
-    safelistColors: ["fiord"],
+    safelistColors: ["fiord", "gray", "white", "black"],
   },
   dayjs: {
     locales: ["en", "id", "ja"],
@@ -239,4 +254,30 @@ export default defineNuxtConfig({
       },
     },
   },
+  // sitemap: {
+  //   sitemapName: "sitemap.xml",
+  //   sitemaps: {
+  //     id: {
+  //       exclude: ["/_nuxt/**", "/_**"],
+  //       includeAppSources: false,
+  //       sitemapName: "id",
+  //       sources: ["/api/__sitemap__/posts?lang=id", "/api/__sitemap__/tags?lang=id", "/api/__sitemap__/all?lang=id"],
+  //     },
+  //     en: {
+  //       exclude: ["/_nuxt/**", "/_**"],
+  //       includeAppSources: false,
+  //       sitemapName: "en",
+  //       sources: ["/api/__sitemap__/posts?lang=en", "/api/__sitemap__/tags?lang=en", "/api/__sitemap__/all?lang=en"],
+  //     },
+  //     ja: {
+  //       exclude: ["/_nuxt/**", "/_**"],
+  //       includeAppSources: false,
+  //       sitemapName: "ja",
+  //       sources: ["/api/__sitemap__/posts?lang=ja", "/api/__sitemap__/tags?lang=ja", "/api/__sitemap__/all?lang=ja"],
+  //     },
+  //   },
+  //   excludeAppSources: ["nuxt:pages", "nuxt:prerender", "nuxt:route-rules"],
+  //   cacheMaxAgeSeconds: import.meta.env.DEV ? 0 : 3600,
+  // },
 });
+

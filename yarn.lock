@@ -8580,6 +8580,7 @@ __metadata:
     remark-subsup: "file:./mdplugins/remark-subsup"
     remark-typography: "file:./mdplugins/remark-typography"
     tailwindcss: "npm:^3.4.7"
+    to-xml: "npm:^0.1.11"
     typescript: "npm:^5.5.4"
     typescript-eslint: "npm:8.0.0-alpha.55"
     uniqid: "npm:^5.4.0"
@@ -11589,6 +11590,15 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"to-xml@npm:^0.1.11":
+  version: 0.1.11
+  resolution: "to-xml@npm:0.1.11"
+  bin:
+    json2xml: bin/json2xml.cli.js
+  checksum: 10c0/ca7d1c4aeb423205df9a5b31b827a047a4f86ba07f58128f69f3661d42cb4d3d761f6642b282fb95608cabe902b624fbe29e08f7e969a3b8ed0433ada1e5c65c
   languageName: node
   linkType: hard
 

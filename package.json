@@ -35,6 +35,7 @@
         "remark-math": "^6.0.0",
         "remark-subsup": "file:./mdplugins/remark-subsup",
         "remark-typography": "file:./mdplugins/remark-typography",
+        "to-xml": "^0.1.11",
         "uniqid": "^5.4.0"
     },
     "packageManager": "yarn@4.3.1",
