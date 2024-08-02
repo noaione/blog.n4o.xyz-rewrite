@@ -36,7 +36,8 @@
     "nextPost": "Next Article",
     "missing": "Content not found",
     "missingNotice": "The content you're trying to access is unavailable, but there is an alternative version in another languages",
-    "noTags": "No registered tags found"
+    "noTags": "No registered tags found",
+    "draft": "Draft"
   },
   "pagination": {
     "prev": "Previous",

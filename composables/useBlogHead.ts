@@ -36,7 +36,8 @@ export default function ({
   const blogConfig = useBlogConfig();
   const config = useRuntimeConfig();
   const route = useRoute();
-  const { locale } = useI18n();
+  const { locale, defaultLocale, locales } = useI18n();
+  const localePath = useLocalePath();
 
   const metaTag = [
     {
@@ -100,6 +101,21 @@ export default function ({
         rel: "canonical",
         href: appendBase(route.fullPath, config.public.productionUrl),
       },
+      {
+        rel: "sitemap",
+        type: "application/xml",
+        href: withBaseUrl("/sitemap.xml", config.public.productionUrl),
+      },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        href: withBaseUrl(`/feeds/${locale.value}.xml`, config.public.productionUrl),
+      },
+      ...locales.value.map((locale) => ({
+        rel: "alternate",
+        hreflang: locale.code === defaultLocale ? "x-default" : locale.code,
+        href: withBaseUrl(localePath(route.fullPath, locale.code), config.public.productionUrl),
+      })),
     ],
     ...(noTemplate
       ? {

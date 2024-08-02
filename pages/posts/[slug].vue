@@ -26,7 +26,7 @@
       >
         <PostAuthor :author="contentResponse?.content.author" />
         <div class="divide-y divide-gray-200 dark:divide-gray-700 xl:col-span-3 xl:row-span-2 xl:pb-0">
-          <div class="prose prose-gray pb-8 pt-10 dark:prose-invert">
+          <div class="prose prose-gray max-w-full pb-8 pt-10 dark:prose-invert">
             <ContentRenderer :value="contentResponse?.content">
               <ContentRendererMarkdown :value="contentResponse?.content" />
             </ContentRenderer>
@@ -114,7 +114,7 @@ if (contentResponse.value?.content || error.value) {
   const content = contentResponse.value?.content;
 
   if (content) {
-    usePostHead(content);
+    usePostHead(content, [locale.value, ...contentResponse.value!.availableLocales]);
   } else {
     useBlogHead({
       title: error.value && error.value.statusCode === 404 ? "404" : "???",

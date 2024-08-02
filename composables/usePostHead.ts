@@ -33,10 +33,12 @@ function appendBase(url: string, baseUrl: string) {
   return withBaseUrl(url, baseUrl);
 }
 
-export default function (input: ExtendedParsedContent) {
+export default function (input: ExtendedParsedContent, locales: string[]) {
   const blogConfig = useBlogConfig();
   const config = useRuntimeConfig();
+  const route = useRoute();
   const { locale, defaultLocale } = useI18n();
+  const localePath = useLocalePath();
 
   const summary = input.description ?? blogConfig.value.description;
 
@@ -172,6 +174,21 @@ export default function (input: ExtendedParsedContent) {
         rel: "canonical",
         href: postUrl,
       },
+      {
+        rel: "sitemap",
+        type: "application/xml",
+        href: withBaseUrl("/sitemap.xml", config.public.productionUrl),
+      },
+      {
+        rel: "alternate",
+        type: "application/rss+xml",
+        href: withBaseUrl(`/feeds/${locale.value}.xml`, config.public.productionUrl),
+      },
+      ...locales.map((locale) => ({
+        rel: "alternate",
+        hreflang: locale === defaultLocale ? "x-default" : locale,
+        href: withBaseUrl(localePath(route.fullPath, locale), config.public.productionUrl),
+      })),
     ],
     script: [
       {
