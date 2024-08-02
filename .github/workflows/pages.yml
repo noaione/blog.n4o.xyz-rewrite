@@ -22,6 +22,8 @@ jobs:
         run: |
           echo "DOMAIN_URL=https://blog.n4o.xyz" >> .env
       - name: Install dependencies
-        run: yarn install
+        run: |
+          yarn config set -H enableImmutableInstalls false
+          yarn install
       - name: Build
         run: yarn build
