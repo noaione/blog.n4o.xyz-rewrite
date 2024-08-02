@@ -134,7 +134,6 @@ export default defineNitroPlugin((nitroApp) => {
       }
 
       file.tags = ensureArrayOfString(file.tags);
-      console.log(file._draft, file.draft);
       file._draft = file._draft || Boolean(file.draft);
       file._contentType = "blog";
 
