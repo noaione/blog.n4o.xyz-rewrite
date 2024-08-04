@@ -311,6 +311,21 @@ export default defineNuxtConfig({
         searchDepth: 3,
       },
     },
+    experimental: {
+      search: {
+        filterQuery: {
+          _partial: false,
+          _draft: false,
+          _source: "content",
+          _contentType: "blog",
+        },
+        options: {
+          fields: ["title", "content", "titles", "description", "tags", "slug"],
+          storeFields: ["title", "slug", "description", "tags", "date", "slug"],
+        },
+        indexed: true,
+      },
+    },
   },
   i18n: {
     strategy: "prefix_except_default",
@@ -375,3 +390,4 @@ export default defineNuxtConfig({
     prefix: "V3",
   },
 });
+
