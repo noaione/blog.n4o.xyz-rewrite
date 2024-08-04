@@ -223,6 +223,15 @@ export default defineNuxtConfig({
           color: "#c2410c",
         },
       ],
+      script: [
+        {
+          src: "https://tr.n4o.xyz/js/37a79777T080eR4f52A99e2Ica9619a85a5d.js",
+          defer: true,
+          async: true,
+          "data-domain": "blog.n4o.xyz",
+          "data-api": "https://tr.n4o.xyz/magic/18c5dcddMc036A4d1dGb785Iaa2e310238c9",
+        },
+      ],
     },
   },
   vue: {
