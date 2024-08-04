@@ -51,5 +51,12 @@
     "tagsHome": "Semua koleksi tagar yang tersedia di blog ini.",
     "tag": "Semua postingan dengan tagar #{tag}",
     "about": "A simple information about this blog"
+  },
+  "spotify": {
+    "loading": "Memuat data...",
+    "noData": "Tidak ada data",
+    "idle": "Tak ada putaran lagu",
+    "byArtist": "oleh",
+    "playing": "Sedang mendengarkan"
   }
 }

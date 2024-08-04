@@ -51,5 +51,12 @@
     "tagsHome": "The tags collection available in the blog.",
     "tag": "All post tagged with #{tag}",
     "about": "Sebuah informasi sederhana tentang blog ini"
+  },
+  "spotify": {
+    "loading": "Loading data...",
+    "noData": "No data",
+    "idle": "Not playing anything",
+    "byArtist": "by",
+    "playing": "Currently jamming to"
   }
 }

@@ -19,6 +19,14 @@
         </NuxtLink>
       </div>
     </div>
+    <div class="py-4 xl:py-8">
+      <h2
+        class="font-variable mt-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
+      >
+        {{ $t("spotify.playing") }}
+      </h2>
+      <SpotifyNowPlaying compact />
+    </div>
     <div v-if="navigation?.next || navigation?.prev" class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
       <div v-if="navigation?.prev">
         <div>
