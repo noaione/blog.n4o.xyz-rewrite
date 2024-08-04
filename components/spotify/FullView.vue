@@ -42,12 +42,12 @@
             </NuxtLink>
           </div>
           <div class="font-variable text-xl text-gray-600 variation-weight-semibold dark:text-gray-500 md:text-2xl">
-            <span class="mr-1">
+            <span class="mr-2">
               <NuxtLink :to="data.data.album.url" class="normal-link" rel="noopener noreferrer" target="_blank">
                 {{ data.data.album.name }}
               </NuxtLink>
             </span>
-            <span class="mr-1">{{ $t("spotify.byArtist") }}</span>
+            <span class="mr-2">{{ $t("spotify.byArtist") }}</span>
             <span v-for="(artist, index) in data.data.artist" :key="artist.id">
               <NuxtLink :to="artist.url" class="normal-link" rel="noopener noreferrer" target="_blank">
                 {{ artist.name }}
@@ -58,7 +58,7 @@
           <div class="font-variable text-gray-400 variation-weight-light dark:text-gray-500">
             {{ parseDate(data.data.album.date) }}
           </div>
-          <div class="font-variable text-gray-400 variation-weight-light dark:text-gray-500">
+          <div class="font-variable text-gray-400 variation-weight-normal dark:text-gray-500">
             <LightweightTimer
               :current="data.data.progress"
               :target="data.data.duration"

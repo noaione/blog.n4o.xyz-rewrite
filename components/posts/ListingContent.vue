@@ -33,6 +33,11 @@
           <p v-else-if="data.description">{{ data.description }}</p>
           <p v-else class="font-variable variation-weight-medium variation-slant-[-10]">No description</p>
         </div>
+        <div v-if="seeMore">
+          <NuxtLink :to="slugUrl" class="normal-link font-variable glow-text-md glow-shadow">
+            {{ $t("blog.readMore") }} &rarr;
+          </NuxtLink>
+        </div>
       </div>
     </article>
   </li>
@@ -43,6 +48,7 @@ import type { ContentPagedQuery } from "~/server/api/content-paged.get";
 
 const props = defineProps<{
   data: ContentPagedQuery;
+  seeMore?: boolean;
 }>();
 
 const localePath = useLocalePath();

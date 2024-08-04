@@ -37,7 +37,10 @@
     "missing": "Content not found",
     "missingNotice": "The content you're trying to access is unavailable, but there is an alternative version in another languages",
     "noTags": "No registered tags found",
-    "draft": "Draft"
+    "draft": "Draft",
+    "latest": "Latest",
+    "viewAll": "All posts",
+    "readMore": "Read more"
   },
   "pagination": {
     "prev": "Previous",
@@ -50,7 +53,8 @@
     "post": "All {name} blog posts in one place!",
     "tagsHome": "The tags collection available in the blog.",
     "tag": "All post tagged with #{tag}",
-    "about": "Sebuah informasi sederhana tentang blog ini"
+    "about": "Sebuah informasi sederhana tentang blog ini",
+    "latest": "The latest blog post from {name}"
   },
   "spotify": {
     "loading": "Loading data...",

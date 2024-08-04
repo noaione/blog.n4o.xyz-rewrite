@@ -37,7 +37,10 @@
     "nextPost": "Artikel Selanjutnya",
     "missing": "Konten tidak ditemukan",
     "missingNotice": "Konten yang anda akses tidak dapat ditemukan, tetapi ada variasi pada Bahasa lain",
-    "noTags": "Tidak ada tagar yang terdaftar"
+    "noTags": "Tidak ada tagar yang terdaftar",
+    "latest": "Terbaru",
+    "viewAll": "Semua postingan",
+    "readMore": "Lihat lebih lanjut"
   },
   "pagination": {
     "prev": "Sebelumnya",
@@ -50,7 +53,8 @@
     "post": "Semua postingan blog {name} dalam satu tempat!",
     "tagsHome": "Semua koleksi tagar yang tersedia di blog ini.",
     "tag": "Semua postingan dengan tagar #{tag}",
-    "about": "A simple information about this blog"
+    "about": "A simple information about this blog",
+    "latest": "Postingan terbaru dari blog {name}"
   },
   "spotify": {
     "loading": "Memuat data...",
