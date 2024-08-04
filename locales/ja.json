@@ -60,5 +60,13 @@
     "idle": "曲を再生しない",
     "byArtist": "から",
     "playing": "現在聴いているもの"
+  },
+  "literal": {
+    "reading": "現在読んでいる本",
+    "wantToRead": "読む予定のもの",
+    "finished": "読み終えた",
+    "dropped": "読むのをやめました",
+    "unknown": "Literal",
+    "viewAt": "表示:"
   }
 }

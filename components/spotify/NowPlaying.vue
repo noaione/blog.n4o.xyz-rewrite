@@ -10,7 +10,7 @@
   <div v-else>
     <div class="space-y-2 pb-8 pt-6 md:space-y-5">
       <h2
-        class="font-variable mb-1 text-xl tracking-tight text-gray-900 variation-weight-extrabold dark:text-gray-100 sm:text-2xl sm:leading-10 md:leading-[3.5rem]"
+        class="font-variable mb-1 text-xl leading-9 tracking-tight text-gray-900 variation-weight-extrabold dark:text-gray-100 sm:text-2xl sm:leading-10 md:text-4xl md:leading-[3.5rem]"
       >
         Spotify
       </h2>

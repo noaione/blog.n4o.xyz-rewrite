@@ -1,5 +1,5 @@
 <template>
-  <div class="">
+  <div class="pb-8">
     <div class="space-y-2 pb-8 pt-6 md:space-y-5">
       <h1
         class="md:leading-14 font-variable text-3xl leading-9 tracking-tight text-gray-900 variation-weight-extrabold dark:text-gray-100 sm:text-4xl sm:leading-10 md:text-6xl"
@@ -23,6 +23,7 @@
       <NuxtLink to="/posts" class="normal-link glow-text-md glow-shadow"> {{ $t("blog.viewAll") }} &rarr; </NuxtLink>
     </div>
     <SpotifyNowPlaying />
+    <LiteralCarousel handle="noaione" reading-status="IS_READING" />
     <!-- TODO: Literal embed -->
   </div>
 </template>

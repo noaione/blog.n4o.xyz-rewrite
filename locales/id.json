@@ -62,5 +62,13 @@
     "idle": "Tak ada putaran lagu",
     "byArtist": "oleh",
     "playing": "Sedang mendengarkan"
+  },
+  "literal": {
+    "reading": "Sedang membaca",
+    "wantToRead": "Ingin membaca",
+    "finished": "Selesai membaca",
+    "dropped": "Berhenti membaca",
+    "unknown": "Literal",
+    "viewAt": "Lihat di"
   }
 }

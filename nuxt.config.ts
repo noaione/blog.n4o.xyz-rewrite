@@ -112,6 +112,7 @@ export default defineNuxtConfig({
     "@vueuse/nuxt",
     "@nuxt/image",
     "dayjs-nuxt",
+    "vue3-carousel-nuxt",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -370,5 +371,7 @@ export default defineNuxtConfig({
       }
     },
   },
+  carousel: {
+    prefix: "V3",
+  },
 });
-

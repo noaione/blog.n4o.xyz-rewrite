@@ -62,5 +62,13 @@
     "idle": "Not playing anything",
     "byArtist": "by",
     "playing": "Currently jamming to"
+  },
+  "literal": {
+    "reading": "Currently reading",
+    "wantToRead": "Will be reading",
+    "finished": "Finished reading",
+    "dropped": "Stopped reading",
+    "unknown": "Literal",
+    "viewAt": "View at"
   }
 }
