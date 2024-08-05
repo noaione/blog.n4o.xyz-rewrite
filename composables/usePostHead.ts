@@ -115,10 +115,10 @@ export default function (input: ExtendedParsedContent, locales: string[]) {
     });
   }
 
-  const authorData = {
+  const allAuthors = input.authors.map((author) => ({
     "@type": "Person",
-    name: input.author,
-  };
+    name: author,
+  }));
 
   const featuredImages = input.image
     ? [
@@ -140,7 +140,7 @@ export default function (input: ExtendedParsedContent, locales: string[]) {
     image: featuredImages,
     datePublished: pubDate.toISOString(),
     dateModified: input.lastmod && new Date(input.lastmod).toISOString(),
-    author: authorData,
+    author: allAuthors.length > 1 ? allAuthors : allAuthors[0],
     publisher: {
       "@type": "Organization",
       name: blogConfig.value.title,
@@ -160,10 +160,10 @@ export default function (input: ExtendedParsedContent, locales: string[]) {
     titleTemplate: `%s :: ${blogConfig.value.title}`,
     meta: [
       ...metaTag,
-      {
+      ...allAuthors.map((author) => ({
         property: "article:author",
-        content: input.author,
-      },
+        content: author.name,
+      })),
       {
         property: "article:tag",
         content: input.tags.join(","),

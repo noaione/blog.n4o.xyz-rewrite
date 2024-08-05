@@ -70,6 +70,7 @@ export default defineEventHandler(async (event) => {
       "@version": "2.0",
       "@xmlns:atom": "http://www.w3.org/2005/Atom",
       "@xmlns:media": "http://search.yahoo.com/mrss/",
+      "@xmlns:dc": "http://purl.org/dc/elements/1.1/",
       channel: {
         title: blogMeta.title,
         description: blogMeta.description,
@@ -91,7 +92,7 @@ export default defineEventHandler(async (event) => {
               guid: url,
               pubDate: pubDate.toUTCString(),
               category: content.tags,
-              author: content.author,
+              "dc:creator": content.authors.join(", "),
               // add image if available
               ...(content.image && {
                 "media:content": {

@@ -20,7 +20,9 @@
       v-if="multiPost && multiPost.length > 1"
       class="font-variable flex justify-end py-4 text-base leading-6 variation-weight-medium"
     >
-      <NuxtLink to="/posts" class="normal-link glow-text-md glow-shadow"> {{ $t("blog.viewAll") }} &rarr; </NuxtLink>
+      <NuxtLink :to="localePath('/posts')" class="normal-link glow-text-md glow-shadow">
+        {{ $t("blog.viewAll") }} &rarr;
+      </NuxtLink>
     </div>
     <SpotifyNowPlaying />
     <LiteralCarousel handle="noaione" reading-status="IS_READING" />
@@ -33,6 +35,7 @@ import type { QueryBuilderWhere } from "@nuxt/content";
 import type { ContentPagedQuery } from "~/server/api/content-paged.get";
 
 const { locale } = useI18n();
+const localePath = useLocalePath();
 const blogMeta = useBlogConfig();
 const runtimeConfig = useRuntimeConfig();
 

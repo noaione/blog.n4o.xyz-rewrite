@@ -3,29 +3,24 @@
     <dt class="sr-only">{{ $t("blog.author.title") }}</dt>
     <dd>
       <ul class="flex justify-center space-x-8 sm:space-x-12 xl:block xl:space-x-0 xl:space-y-8">
-        <li class="flex items-center space-x-2">
-          <img
-            v-if="computedAuthor?.avatar"
-            :src="computedAuthor?.avatar"
-            alt="avatar"
-            class="h-10 w-10 rounded-full"
-          />
+        <li v-for="author in computedAuthors ?? []" :key="author.id" class="flex items-center space-x-2">
+          <NuxtImg v-if="author.avatar" :src="author.avatar" alt="avatar" class="h-10 w-10 rounded-full" />
           <Icon v-else name="heroicons:user-solid" class="h-10 w-10 rounded-full" />
           <dl class="whitespace-nowrap text-sm leading-5">
             <dt class="sr-only">{{ $t("blog.author.name") }}</dt>
             <dd class="font-variable tracking-tight text-gray-900 variation-weight-semibold dark:text-gray-100">
-              {{ computedAuthor?.name ?? "Anon" }}
+              {{ author?.name ?? "Anon" }}
             </dd>
-            <dt v-if="computedSocial" class="sr-only">{{ getSocialName(computedSocial.type) }}</dt>
-            <dd v-if="computedSocial">
+            <dt v-if="author.selectSocial" class="sr-only">{{ getSocialName(author.selectSocial.type) }}</dt>
+            <dd v-if="author.selectSocial">
               <NuxtLink
-                :to="computedSocial.url"
+                :to="author.selectSocial.url"
                 class="normal-link font-variable break-words text-primary-500 variation-weight-medium"
                 target="_blank"
                 rel="noopener noreferrer"
-                :aria-label="getSocialName(computedSocial.type)"
+                :aria-label="getSocialName(author.selectSocial.type)"
               >
-                {{ computedSocial.text }}
+                {{ author.selectSocial.text }}
               </NuxtLink>
             </dd>
           </dl>
@@ -37,27 +32,39 @@
 
 <script setup lang="ts">
 const props = defineProps<{
-  author?: string;
+  authors?: string | string[];
 }>();
 
 const { t } = useI18n();
 const { getAuthor } = useBlogAuthor();
 
-const computedAuthor = computed(() => {
-  if (props.author) {
-    return getAuthor(props.author);
+const computedAuthors = computed(() => {
+  if (props.authors) {
+    const authors = Array.isArray(props.authors) ? props.authors : [props.authors];
+    const mapAuthors = authors
+      .map((author) => {
+        const authorData = getAuthor(author);
+
+        if (authorData) {
+          return {
+            ...authorData,
+            selectSocial: selectSocial(authorData),
+          };
+        }
+      })
+      .filter((author) => author !== undefined);
+
+    return mapAuthors;
   }
 });
 
-const computedSocial = computed(() => {
-  if (computedAuthor.value) {
-    if (computedAuthor.value.socialMedia.github) {
-      return { ...computedAuthor.value.socialMedia.github, type: "github" };
-    } else if (computedAuthor.value.socialMedia.twitter) {
-      return { ...computedAuthor.value.socialMedia.twitter, type: "twitter" };
-    }
+function selectSocial(author: Author) {
+  if (author.socialMedia?.github) {
+    return { ...author.socialMedia.github, type: "github" };
+  } else if (author.socialMedia?.twitter) {
+    return { ...author.socialMedia.twitter, type: "twitter" };
   }
-});
+}
 
 function getSocialName(social: string) {
   if (social === "github") {

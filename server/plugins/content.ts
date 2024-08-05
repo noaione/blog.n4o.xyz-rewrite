@@ -77,7 +77,7 @@ function calculateReadingTime(root: MarkdownRoot): ReadTimeResults {
   });
 }
 
-function validateAuthor(author: string) {
+function validateSingleAuthor(author: string) {
   const match = authorLists.find((a) => a.id === author);
 
   if (!match) {
@@ -85,6 +85,17 @@ function validateAuthor(author: string) {
 
     throw new Error(`Author ID ${author} does not exist, availables: ${availIds.join(", ")}`);
   }
+}
+
+function validateAuthor(authors: string | string[]) {
+  const authorsArr = Array.isArray(authors) ? authors : [authors];
+
+  authorsArr.forEach((a) => validateSingleAuthor(a));
+
+  // Deduplicate
+  const uniqueAuthors = [...new Set(authorsArr)];
+
+  return uniqueAuthors;
 }
 
 interface BeforeParse {
@@ -114,16 +125,18 @@ export default defineNitroPlugin((nitroApp) => {
       const pathActual = splitIds[splitIds.length - 1];
       const dateInfo = extractDateFromFilename(pathActual);
 
-      if (!file.author) {
-        throw new Error(`Author is not defined in ${file._id}`);
-      }
-
-      validateAuthor(file.author);
-
       file._id = [...idPrefix, dateInfo.title].join(":");
       file.date = ensureDateOr(file.date, dateInfo.date);
 
       file.slug = dateInfo.title.replace(/\.md$/, "");
+
+      const authors = file.author || file.authors;
+
+      if (!authors) {
+        throw new Error(`Author is not defined in ${file._id}`);
+      }
+
+      file.authors = validateAuthor(authors);
 
       if (file._file && file._source) {
         const joinPath = join(file._source, file._file);
@@ -154,7 +167,7 @@ export interface ExtendedParsedContent extends ParsedContentMeta {
   tags: string[];
   readingTime: ReadTimeResults;
   _draft: boolean;
-  author: string;
+  authors: string[];
   slug: string;
   _contentType: "blog";
   /**
