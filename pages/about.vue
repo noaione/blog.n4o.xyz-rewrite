@@ -51,7 +51,7 @@ const { locale, t } = useI18n();
 
 const blogConfig = useBlogConfig();
 
-const { data: aboutContent } = await useAsyncData("homeblog-about-page-about", () =>
+const { data: aboutContent } = await useAsyncData(`homeblog-about-page-about-${locale.value}`, () =>
   queryContent<ParsedContentWithSocialMedia>()
     .where({
       _source: "data",

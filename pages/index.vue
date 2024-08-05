@@ -50,7 +50,7 @@ if (runtimeConfig.public.productionMode) {
   query._draft = false;
 }
 
-const { data: multiPost, error } = await useAsyncData("home-blog-posts-main", () =>
+const { data: multiPost, error } = await useAsyncData(`home-blog-posts-main-${locale.value}`, () =>
   queryContent<ContentPagedQuery>()
     .where(query)
     .sort({
