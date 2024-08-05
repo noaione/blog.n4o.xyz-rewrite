@@ -95,7 +95,7 @@ interface BeforeParse {
 
 export default defineNitroPlugin((nitroApp) => {
   nitroApp.hooks.hook("content:file:beforeParse", (file: BeforeParse) => {
-    if (file._id.endsWith(".md") && !file._id.startsWith("content:")) {
+    if (file._id.endsWith(".md") && file._id.startsWith("content:")) {
       // Formatted content:LANG:anypath:actualpath
       const splitted = file._id.split(":");
       const path = splitted[splitted.length - 1];

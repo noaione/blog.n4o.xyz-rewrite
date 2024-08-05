@@ -22,7 +22,7 @@
       <div v-else class="flex flex-col items-center gap-4 md:flex-row md:items-start">
         <div class="relative">
           <NuxtLink :href="data.data.album.url" rel="noopener noreferrer" target="_blank">
-            <div className="absolute top-0 bottom-0 right-0 left-0 rounded-lg border-4 spotify-wave duration-[10s]" />
+            <div class="spotify-wave absolute bottom-0 left-0 right-0 top-0 rounded-lg border-4 duration-[10s]" />
             <NuxtImg
               class="h-auto w-96 rounded-lg shadow-lg"
               :src="data.data.album.cover"

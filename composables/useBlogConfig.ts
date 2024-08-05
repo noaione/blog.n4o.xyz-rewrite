@@ -7,6 +7,7 @@ export interface BlogConfig {
   title: string;
   description: string;
   image: string;
+  aboutImage: string;
 }
 
 const blogConfigs = {

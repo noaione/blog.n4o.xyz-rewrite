@@ -53,7 +53,7 @@
     "post": "Semua postingan blog {name} dalam satu tempat!",
     "tagsHome": "Semua koleksi tagar yang tersedia di blog ini.",
     "tag": "Semua postingan dengan tagar #{tag}",
-    "about": "A simple information about this blog",
+    "about": "Sebuah informasi sederhana tentang blog ini\\",
     "latest": "Postingan terbaru dari blog {name}"
   },
   "spotify": {
