@@ -113,6 +113,7 @@ export default defineNuxtConfig({
     "@nuxt/image",
     "dayjs-nuxt",
     "vue3-carousel-nuxt",
+    "nitro-cloudflare-dev",
   ],
   routeRules: {
     "/": { prerender: true },
@@ -128,6 +129,10 @@ export default defineNuxtConfig({
         ...locales.map((locale) => `/feeds/${locale.code}.xml`),
       ],
     },
+    preset: "cloudflare-pages",
+  },
+  build: {
+    analyze: true,
   },
   app: {
     head: {

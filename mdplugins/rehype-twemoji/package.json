@@ -1,6 +1,6 @@
 {
     "name": "rehype-twemoji",
-    "version": "0.0.6.1",
+    "version": "0.0.6.2",
     "type": "module",
     "description": "A fork of a fork to use Twemoji with Rehype.",
     "main": "index.js",
@@ -17,7 +17,6 @@
     "dependencies": {
         "@twemoji/api": "^15.1.0",
         "emoji-regex": "^10.3.0",
-        "gemoji": "^8.1.0",
         "hast-util-find-and-replace": "^5.0.1",
         "hastscript": "^9.0.0"
     },

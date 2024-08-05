@@ -1,11 +1,9 @@
 import twemoji from "@twemoji/api";
 import emojiRegex from "emoji-regex";
-import { gemoji } from "gemoji";
 import { h } from "hastscript";
 import { findAndReplace } from "hast-util-find-and-replace";
 
 const emojiRegexValue = emojiRegex();
-const gemojiMap = new Map(gemoji.map((data) => [data.emoji, data]));
 
 /**
  * @typedef {Object} RehypeTwemojiOptions
@@ -73,12 +71,11 @@ const rehypeTwemoji = (inputOptions) => (tree) => {
         );
         const size = format === "svg" ? "svg" : "72x72";
         const url = `${source}/assets/${size}/${codePoint}.${format}`;
-        const description = gemojiMap.get(emoji)?.description ?? emoji;
 
         return h("img", {
           src: url,
           alt: emoji,
-          "aria-label": `Twitter: ${description}`,
+          "aria-label": `Twitter: ${emoji}`,
           "data-twemoji": "",
           "data-is-emote": true,
         });
