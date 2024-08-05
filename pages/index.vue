@@ -11,8 +11,8 @@
       </p>
     </div>
     <ul class="divide-y divide-gray-200 dark:divide-gray-700">
-      <PostsListingContent v-if="multiPost" :data="multiPost[0]" see-more />
-      <p v-else-if="!multiPost && !error" class="mt-2">
+      <PostsListingContent v-if="multiPost && multiPost.length > 0" :data="multiPost[0]" see-more />
+      <p v-else-if="!error" class="mt-2">
         {{ $t("blog.noPosts") }}
       </p>
     </ul>
