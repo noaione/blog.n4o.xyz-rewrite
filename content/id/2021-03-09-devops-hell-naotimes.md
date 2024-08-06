@@ -11,7 +11,7 @@ tags:
 ---
 
 <div class="text-center">
-  <p class="italic">Postigan ini merupakan pos pertama dari seri DevOps Hell</p>
+  <p class="font-variable variation-slant-[-10]">Postigan ini merupakan pos pertama dari seri DevOps Hell</p>
 </div>
 
 naoTimes adalah bot Discord yang tak buat untuk tracking garapan Fansub, Bot ini juga bisa melakukan berbagai hal lain.
