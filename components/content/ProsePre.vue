@@ -1,22 +1,58 @@
 <template>
-  <div class="relative my-5 [&>pre]:!my-0">
+  <div class="group relative my-5 [&>pre]:!my-0">
     <div
       v-if="filename"
-      class="rose-pine-surface flex w-full flex-row items-center py-2 text-[#575279] dark:text-[#e0def4]"
+      class="rose-pine-surface flex w-full flex-row items-center justify-between py-2 text-[#575279] dark:text-[#e0def4]"
     >
-      <div class="flex px-1 py-1 pl-4">
-        <ProseCodeIcon :language="language" />
+      <div class="flex flex-row items-center">
+        <div class="flex px-1 py-1 pl-4">
+          <ProseCodeIcon :language="language" />
+        </div>
+        <div class="font-variable py-1 pl-1 pr-4 text-sm tracking-tight variation-weight-[550]">{{ filename }}</div>
       </div>
-      <div class="font-variable py-1 pl-1 pr-4 text-sm tracking-tight variation-weight-[550]">{{ filename }}</div>
+      <button
+        class="invisible mr-2 flex h-8 w-8 flex-row items-center rounded-sm border-2 py-0.5 opacity-0 transition group-hover:visible group-hover:opacity-100"
+        :class="{
+          'border-[#8c8c8c] dark:border-[#e0def4]': !clickedClipboard,
+          'border-green-500': clickedClipboard,
+        }"
+        @click="copyToClipboard"
+      >
+        <Icon
+          name="heroicons:clipboard"
+          class="m-auto h-5 w-5 transition"
+          :class="{
+            'text-[#8c8c8c] dark:text-[#e0def4]': !clickedClipboard,
+            'text-green-500': clickedClipboard,
+          }"
+        />
+      </button>
     </div>
     <pre
       :class="`font-monaspace-neon shiki-wrapper !rose-pine-related font-variable tracking-normal ${filename ? 'mt-0 rounded-t-none' : 'rounded-t-md'} ${$props.class ?? ''}`"
-    ><slot /></pre>
+    ><button
+        v-if="!filename"
+        class="invisible absolute right-2 top-2 flex h-8 w-8 flex-row items-center rounded-sm border-2 py-0.5 opacity-0 transition group-hover:visible group-hover:opacity-100"
+        :class="{
+          'border-[#8c8c8c] dark:border-[#e0def4]': !clickedClipboard,
+          'border-green-500': clickedClipboard,
+        }"
+        @click="copyToClipboard"
+      >
+      <Icon
+        name="heroicons:clipboard"
+        class="m-auto h-5 w-5 transition"
+        :class="{
+          '!bg-[#8c8c8c] dark:!bg-[#e0def4]': !clickedClipboard,
+          '!bg-green-500': clickedClipboard,
+        }"
+      />
+      </button><slot /></pre>
   </div>
 </template>
 
 <script setup lang="ts">
-withDefaults(
+const props = withDefaults(
   defineProps<{
     code: string;
     language?: string | null;
@@ -34,6 +70,16 @@ withDefaults(
     class: null,
   }
 );
+
+const clickedClipboard = ref(false);
+
+const copyToClipboard = () => {
+  navigator.clipboard.writeText(props.code);
+  clickedClipboard.value = true;
+  setTimeout(() => {
+    clickedClipboard.value = false;
+  }, 2000);
+};
 </script>
 
 <style lang="postcss">
