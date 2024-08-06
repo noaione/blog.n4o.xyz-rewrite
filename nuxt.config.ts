@@ -314,8 +314,9 @@ export default defineNuxtConfig({
       ],
     },
     markdown: {
-      remarkPlugins: ["remark-disemote", "remark-subsup", "remark-math", "remark-typography"],
+      remarkPlugins: ["remark-disemote", "remark-subsup", "remark-math"],
       rehypePlugins: {
+        "rehype-styling": {},
         "rehype-twemoji": {},
         "rehype-katex": {},
       },

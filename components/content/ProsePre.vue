@@ -60,4 +60,24 @@ withDefaults(
     font-feature-settings: "calt", "liga", "ss01", "ss02", "ss03", "ss05", "ss06", "ss07", "ss08";
   }
 }
+
+.shiki-line-n::before {
+  content: var(--shiki-line-number);
+  width: 1rem;
+  margin-right: 1.5rem;
+  display: inline-block;
+  text-align: right;
+  color: #575279;
+  opacity: 0.6;
+}
+
+.dark .shiki-line-n::before {
+  color: #e0def4;
+}
+
+.shiki span {
+  font-variation-settings:
+    "wght" var(--shiki-wght),
+    "slnt" var(--shiki-slnt);
+}
 </style>

@@ -19,12 +19,13 @@ Because it would be funny to rewrite this blog again.
 - ⌨️ Markdown with a ton of plugins (thanks to nuxt/mdc)
 - 🌐 Multilingual or i18n support (Mainly in Indonesian and English)
 - 🤖 Monospaced-like font (using Monaspace Xenon for main font and Neon for code)
+  - There is a small bug on mobile where it didn't load the font properly, I'm still investigating this
 - 📏 Use variable font by default for better performance
 - 🚀 Fast (arguably)
 - 📜 SEO friendly (I hope)
 - 📱 Mobile friendly (as friendly as I can make it)
-- 📈 Proper sitemap and RSS feed (not yet, but soon)
-- 💬 Comment feature (via `utteranc.es`)
+- 📈 Proper sitemap and RSS feed
+- 💬 Comment feature (via `giscus.app`)
 - 📝 Draft-like feature so you don't publish your bad writing immediately
 
 ## Development

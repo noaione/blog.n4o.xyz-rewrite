@@ -1,7 +1,8 @@
+import { apStyleTitleCase } from "ap-style-title-case";
 import { visit } from "unist-util-visit";
 import { statSync } from "node:fs";
 import { join } from "node:path";
-import { MarkdownNode, MarkdownRoot, ParsedContentMeta } from "@nuxt/content";
+import { MarkdownNode, MarkdownParsedContent, MarkdownRoot, Toc, TocLink } from "@nuxt/content";
 import readingTime, { ReadTimeResults } from "reading-time";
 import authorLists from "~/data/author.json";
 
@@ -98,6 +99,18 @@ function validateAuthor(authors: string | string[]) {
   return uniqueAuthors;
 }
 
+function transformTocLinks(links: TocLink[]) {
+  return links.map((link) => {
+    link.text = apStyleTitleCase(link.text);
+
+    if (link.children) {
+      link.children = transformTocLinks(link.children);
+    }
+
+    return link;
+  });
+}
+
 interface BeforeParse {
   _id: string;
   body: string;
@@ -128,6 +141,7 @@ export default defineNitroPlugin((nitroApp) => {
       file._id = [...idPrefix, dateInfo.title].join(":");
       file.date = ensureDateOr(file.date, dateInfo.date);
 
+      file.title = file.title ? apStyleTitleCase(file.title) : "Untitled";
       file.slug = dateInfo.title.replace(/\.md$/, "");
 
       const authors = file.author || file.authors;
@@ -151,6 +165,12 @@ export default defineNitroPlugin((nitroApp) => {
       file._contentType = "blog";
 
       file.readingTime = calculateReadingTime(file.body);
+
+      // Title case ToC
+      if (file.body.toc) {
+        file.body.toc.title = file.body.toc.title ? apStyleTitleCase(file.body.toc.title) : "";
+        file.body.toc.links = transformTocLinks(file.body.toc.links || []);
+      }
     }
   });
 });
@@ -160,7 +180,7 @@ export default defineNitroPlugin((nitroApp) => {
  *
  * It adds additional properties that we need for our blog
  */
-export interface ExtendedParsedContent extends ParsedContentMeta {
+export interface ExtendedParsedContent extends MarkdownParsedContent {
   date?: Date;
   lastmod?: Date;
   image?: string;
@@ -177,7 +197,9 @@ export interface ExtendedParsedContent extends ParsedContentMeta {
   /**
    * Content body
    */
-  body: MarkdownRoot | null;
+  body: MarkdownRoot & {
+    toc?: Toc;
+  };
 }
 
 export type FrontMatterData = Pick<
