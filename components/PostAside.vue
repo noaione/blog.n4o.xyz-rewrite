@@ -1,6 +1,6 @@
 <template>
   <div
-    class="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:col-start-1 xl:row-start-2 xl:divide-y"
+    class="divide-gray-200 text-sm font-medium leading-5 dark:divide-gray-700 xl:sticky xl:top-0 xl:col-start-1 xl:row-start-2 xl:divide-y"
   >
     <div v-if="tags" class="py-4 xl:py-8">
       <h2

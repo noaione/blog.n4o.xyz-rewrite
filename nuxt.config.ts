@@ -392,6 +392,7 @@ export default defineNuxtConfig({
         "repo-card": "RepoCard",
         gist: "Gist",
         asciinema: "Asciinema",
+        "github-code": "GitHubCode",
       },
     },
   },

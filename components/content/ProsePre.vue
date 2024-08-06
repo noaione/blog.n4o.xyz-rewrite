@@ -1,5 +1,5 @@
 <template>
-  <div class="group relative my-5 [&>pre]:!my-0">
+  <div ref="bodyEl" class="group relative my-5 [&>pre]:!my-0">
     <div
       v-if="filename"
       class="rose-pine-surface flex w-full flex-row items-center justify-between py-2 text-[#575279] dark:text-[#e0def4]"
@@ -71,6 +71,7 @@ const props = withDefaults(
   }
 );
 
+const bodyEl = ref<HTMLDivElement>();
 const clickedClipboard = ref(false);
 
 const copyToClipboard = () => {
@@ -80,6 +81,22 @@ const copyToClipboard = () => {
     clickedClipboard.value = false;
   }, 2000);
 };
+
+onMounted(() => {
+  if (bodyEl.value) {
+    const preEl = bodyEl.value.querySelector("pre");
+
+    if (preEl) {
+      // Check if the pre element has a "not-prose"
+
+      const notProse = preEl.classList.contains("unprose");
+
+      if (notProse) {
+        bodyEl.value.classList.add("shiki-unprose");
+      }
+    }
+  }
+});
 </script>
 
 <style lang="postcss">
@@ -90,6 +107,10 @@ const copyToClipboard = () => {
 .shiki-wrapper {
   /* by default use this color */
   color: #575279;
+}
+
+.shiki-unprose {
+  margin-bottom: 0px;
 }
 
 .dark .shiki-wrapper {
