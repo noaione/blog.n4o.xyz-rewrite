@@ -17,3 +17,6 @@ dist
 !.yarn/versions
 
 .wrangler
+
+# Where I put temporary writing to not be committed
+/content-draft

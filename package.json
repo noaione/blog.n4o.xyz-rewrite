@@ -58,6 +58,7 @@
         "@types/postcss-js": "^4.0.4",
         "@types/uniqid": "^5.3.4",
         "ap-style-title-case": "^2.0.0",
+        "asciinema-player": "^3.8.0",
         "dayjs-nuxt": "^2.1.9",
         "eslint": "^9.8.0",
         "eslint-config-prettier": "^9.1.0",

@@ -311,6 +311,7 @@ export default defineNuxtConfig({
         "powershell",
         "diff",
         "bat",
+        "prisma",
       ],
     },
     markdown: {
@@ -390,6 +391,7 @@ export default defineNuxtConfig({
         admonition: "Admonition",
         "repo-card": "RepoCard",
         gist: "Gist",
+        asciinema: "Asciinema",
       },
     },
   },
