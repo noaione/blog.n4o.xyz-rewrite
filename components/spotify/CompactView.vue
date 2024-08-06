@@ -3,7 +3,7 @@
     <Icon name="simple-icons:spotify" class="ml-auto mt-[0.1rem] h-4 w-4 text-[#1ED760]" />
     <div class="flex w-full max-w-full flex-col">
       <p
-        v-if="loading"
+        v-if="loading && !noSkeleton"
         class="font-variable whitespace-pre-line text-gray-800 variation-weight-medium dark:text-gray-200"
       >
         {{ $t("spotify.loading") }}
@@ -20,13 +20,18 @@
             {{ data.data.artist.map((r) => r.name).join(", ") }} - {{ data.data.title }}
           </NuxtLink>
           <div class="mt-0.5 flex flex-col">
-            <p class="font-variable text-gray-800 variation-weight-medium dark:text-gray-200">
+            <div class="font-variable text-gray-800 variation-weight-medium dark:text-gray-200">
               <LightweightTimer
+                v-if="data.playing"
                 :current="data.data.progress"
                 :target="data.data.duration"
                 @complete="$emit('complete')"
               />
-            </p>
+              <div v-else class="flex items-center">
+                <Icon name="heroicons:pause-circle" class="mb-0.5 mr-0.5 size-4" />
+                <StaticTimer :current="data.data.progress" :target="data.data.duration" />
+              </div>
+            </div>
           </div>
         </template>
       </template>
@@ -42,6 +47,7 @@ const props = defineProps<{
   data?: SpotifyNowResult;
   loading?: boolean;
   error?: string;
+  noSkeleton?: boolean;
 }>();
 
 const emits = defineEmits<{
@@ -51,33 +57,19 @@ const emits = defineEmits<{
 
 const refInterval = ref<NodeJS.Timeout | null>(null);
 
-watch(
-  () => props.data,
-  () => {
-    // If the data is not present, refresh the data on an interval
-    if (!props.data && !props.loading && !refInterval.value) {
-      const interval = setInterval(() => {
-        if (props.data?.data) {
-          clearInterval(interval);
-
-          return;
-        }
-
-        emits("refresh");
-      }, 5000);
-
-      onBeforeUnmount(() => {
-        clearInterval(interval);
-      });
-
-      refInterval.value = interval;
+onMounted(() => {
+  refInterval.value = setInterval(() => {
+    if (props.data?.data && props.data.playing) {
+      return;
     }
 
-    // If the data is present, clear the interval
-    if (props.data?.data && refInterval.value) {
-      clearInterval(refInterval.value);
-      refInterval.value = null;
-    }
+    emits("refresh");
+  }, 5000);
+});
+
+onBeforeUnmount(() => {
+  if (refInterval.value) {
+    clearInterval(refInterval.value);
   }
-);
+});
 </script>
