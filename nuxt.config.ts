@@ -393,6 +393,8 @@ export default defineNuxtConfig({
         gist: "Gist",
         asciinema: "Asciinema",
         "github-code": "GitHubCode",
+        keystroke: "Keystroke",
+        kbd: "ProseKbd",
       },
     },
   },
