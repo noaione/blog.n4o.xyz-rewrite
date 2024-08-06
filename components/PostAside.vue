@@ -75,7 +75,7 @@
 <script setup lang="ts">
 const props = defineProps<{
   tags?: string[];
-  path: string;
+  slug: string;
 }>();
 
 const { locale } = useI18n();
@@ -83,7 +83,7 @@ const localePath = useLocalePath();
 const runtimeConfig = useRuntimeConfig();
 
 interface PostAsideNavRequest {
-  path: string;
+  slug: string;
   locale?: string;
   draft?: boolean;
 }
@@ -101,7 +101,7 @@ interface PostAsideNavResponse {
 }
 
 const query: PostAsideNavRequest = {
-  path: props.path,
+  slug: props.slug,
   locale: locale.value,
 };
 
@@ -110,7 +110,7 @@ if (runtimeConfig.public.productionMode) {
   query.draft = false;
 }
 
-const { data: navigation } = await useAsyncData(`v2-1-main-navigations-${locale.value}-${props.path}`, () =>
+const { data: navigation } = await useAsyncData(`v2-2-main-navigations-${locale.value}-${props.slug}`, () =>
   $fetch<PostAsideNavResponse>("/api/content-nav", {
     method: "GET",
     query: query,

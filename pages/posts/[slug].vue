@@ -53,7 +53,7 @@
           </div>
         </div>
         <footer>
-          <PostAside :tags="contentResponse?.content.tags" :path="contentResponse?.content._path!" />
+          <PostAside :tags="contentResponse?.content.tags" :slug="contentResponse?.content.slug" />
         </footer>
       </div>
     </div>
