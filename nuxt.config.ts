@@ -137,7 +137,7 @@ export default defineNuxtConfig({
   vite: {
     build: {
       rollupOptions: {
-        external: ["shiki"],
+        external: ["shiki/onig.wasm"],
       },
     },
   },
