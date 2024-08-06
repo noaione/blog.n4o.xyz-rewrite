@@ -6,7 +6,8 @@
         wordWrap: 'break-word',
       }"
     >
-      <MDCRenderer v-if="codeAst?.body" :body="codeAst.body" :data="codeAst.data" />
+      <MDCRenderer v-if="codeAst && codeAst.body" :body="codeAst.body" :data="codeAst.data" />
+      <ProsePre v-else unprose code="Currently loading the file...">Currently loading the file...</ProsePre>
     </div>
   </div>
   <div class="rose-pine-surface mx-4 flex flex-row justify-between rounded-b-md px-4 py-3 text-sm">
@@ -71,14 +72,8 @@ const {
   data: codeContents,
   error,
   execute,
-} = await useAsyncData(
-  `codeblock-gh-${props.user}-${props.repo}-${props.branch}-${props.file}`,
-  () => $fetch<string>(`https://raw.githubusercontent.com/${props.user}/${props.repo}/${props.branch}/${props.file}`),
-  {
-    server: false,
-    immediate: false,
-    lazy: true,
-  }
+} = await useAsyncData(`codeblock-gh-${props.user}-${props.repo}-${props.branch}-${props.file}`, () =>
+  $fetch<string>(`https://raw.githubusercontent.com/${props.user}/${props.repo}/${props.branch}/${props.file}`)
 );
 
 const rawFileUrl = computed(() => {
@@ -89,9 +84,9 @@ const fileUrl = computed(() => {
 
   let endLineText = "";
 
-  if (props.startLine && props.endLine && props.startLine < props.endLine) {
+  if (props.startLine && props.endLine && props.startLine > 1 && props.startLine < props.endLine) {
     endLineText = `#L${props.startLine}-L${props.endLine}`;
-  } else if (props.startLine) {
+  } else if (props.startLine && props.startLine > 1) {
     endLineText = `#L${props.startLine}`;
   } else if (props.endLine && props.endLine > 1) {
     endLineText = `#L1-L${props.endLine}`;
@@ -102,7 +97,7 @@ const fileUrl = computed(() => {
 const fileName = computed(() => {
   const lastPart = props.file.split("/").pop()!;
 
-  if (["master", "main"].includes(props.branch)) {
+  if (!["master", "main"].includes(props.branch)) {
     const branchExt = props.branch.length === 40 ? props.branch.slice(0, 8) : props.branch;
 
     return `${lastPart}@${branchExt}`;
@@ -158,10 +153,6 @@ async function parseMarkdown(
 }
 
 onMounted(async () => {
-  await parseMarkdown("Currently fetching the file...", {
-    overrideLang: "",
-  });
-
   await execute();
 
   if (codeContents.value) {

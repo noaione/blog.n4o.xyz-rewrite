@@ -1,5 +1,11 @@
 <template>
-  <div ref="bodyEl" class="group relative my-5 [&>pre]:!my-0">
+  <div
+    ref="bodyEl"
+    class="group relative my-5 [&>pre]:!my-0"
+    :class="{
+      'shiki-unprose': unprose,
+    }"
+  >
     <div
       v-if="filename"
       class="rose-pine-surface flex w-full flex-row items-center justify-between py-2 text-[#575279] dark:text-[#e0def4]"
@@ -60,6 +66,7 @@ const props = withDefaults(
     highlights?: number[];
     meta?: string | null;
     class?: string | null;
+    unprose?: boolean;
   }>(),
   {
     code: "",
@@ -68,6 +75,7 @@ const props = withDefaults(
     highlights: () => [],
     meta: null,
     class: null,
+    unprose: false,
   }
 );
 

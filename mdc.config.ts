@@ -2,6 +2,11 @@ import { defineConfig } from "@nuxtjs/mdc/config";
 import remarkHeads from "remark-heads";
 import { transformerMetaWordHighlight, transformerNotationHighlight } from "@shikijs/transformers";
 import type { ShikiTransformer } from "shiki";
+import {
+  transformerFontVariable,
+  transformerNotProsePosition,
+  transformerShikiLineNumbers,
+} from "./utils/transformers";
 
 const defaultTransformers = [transformerNotationHighlight(), transformerMetaWordHighlight()] as ShikiTransformer[];
 
