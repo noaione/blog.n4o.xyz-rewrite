@@ -1,0 +1,13 @@
+diff --git a/dist/module.mjs b/dist/module.mjs
+index 6bfb1bd7422d83fc47ec4cf9603af2f187768bcb..a615e8b343d87c896fb8f5606d7cc83cb2804305 100644
+--- a/dist/module.mjs
++++ b/dist/module.mjs
+@@ -74,7 +74,7 @@ async function mdcHighlighter({
+       code = code.replace(
+         /import\((['"])shiki\/wasm\1\)/,
+         // We can remove the .client condition once Vite supports WASM ESM import
+-        "import.meta.client ? import('shiki/wasm') : import('shiki/onig.wasm')"
++        "import.meta.client ? import('shiki/wasm') : import('shiki/onig.wasm?init')"
+       );
+     }
+     const { bundledLanguagesInfo } = await import('shiki/langs');

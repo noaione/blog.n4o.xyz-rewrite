@@ -134,6 +134,13 @@ export default defineNuxtConfig({
   build: {
     analyze: true,
   },
+  vite: {
+    build: {
+      rollupOptions: {
+        external: ["shiki"],
+      },
+    },
+  },
   app: {
     head: {
       title: "N4O Blog",

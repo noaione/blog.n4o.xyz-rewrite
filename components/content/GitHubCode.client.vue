@@ -45,6 +45,7 @@
 </template>
 
 <script setup lang="ts">
+import { FetchError } from "ofetch";
 import type { MDCParserResult } from "@nuxtjs/mdc";
 
 const props = withDefaults(
@@ -65,16 +66,7 @@ const props = withDefaults(
   }
 );
 
-const parser = useCodeRenderer();
 const codeAst = ref<MDCParserResult>();
-
-const {
-  data: codeContents,
-  error,
-  execute,
-} = await useAsyncData(`codeblock-gh-${props.user}-${props.repo}-${props.branch}-${props.file}`, () =>
-  $fetch<string>(`https://raw.githubusercontent.com/${props.user}/${props.repo}/${props.branch}/${props.file}`)
-);
 
 const rawFileUrl = computed(() => {
   return `https://raw.githubusercontent.com/${props.user}/${props.repo}/${props.branch}/${props.file}`;
@@ -120,6 +112,7 @@ async function parseMarkdown(
     endLine?: number;
   }
 ) {
+  const parser = useCodeRenderer();
   const { overrideLang, startLine, endLine } = options ?? {};
 
   // do cutoff
@@ -153,24 +146,28 @@ async function parseMarkdown(
 }
 
 onMounted(async () => {
-  await execute();
+  try {
+    const codeContents = await $fetch<string>(
+      `https://raw.githubusercontent.com/${props.user}/${props.repo}/${props.branch}/${props.file}`,
+      {
+        responseType: "text",
+      }
+    );
 
-  if (codeContents.value) {
-    await parseMarkdown(codeContents.value, {
+    await parseMarkdown(codeContents, {
       startLine: props.startLine,
       endLine: props.endLine,
     });
-  } else if (error.value) {
-    await parseMarkdown(
-      `An error occurred while fetching the file.\n${error.value.statusCode} — ${error.value.message}`,
-      {
+  } catch (error) {
+    if (error instanceof FetchError) {
+      await parseMarkdown(`An error occurred while fetching the file.\n${error.statusCode} — ${error.message}`, {
         overrideLang: "",
-      }
-    );
-  } else {
-    await parseMarkdown("An unknown error occurred", {
-      overrideLang: "",
-    });
+      });
+    } else {
+      await parseMarkdown(`An error occurred while fetching the file.\n${error}`, {
+        overrideLang: "",
+      });
+    }
   }
 });
 </script>

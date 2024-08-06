@@ -75,6 +75,11 @@
         "typescript-eslint": "8.0.1",
         "unist-util-find": "^3.0.0",
         "unist-util-visit": "^5.0.0",
+        "vite-plugin-top-level-await": "^1.4.2",
+        "vite-plugin-wasm": "^3.3.0",
         "wrangler": "^3.68.0"
+    },
+    "resolutions": {
+        "@nuxtjs/mdc@npm:^0.8.3": "patch:@nuxtjs/mdc@npm%3A0.8.3#~/.yarn/patches/@nuxtjs-mdc-npm-0.8.3-ebac258ee1.patch"
     }
 }
