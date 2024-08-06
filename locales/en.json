@@ -40,7 +40,8 @@
     "draft": "Draft",
     "latest": "Latest",
     "viewAll": "All posts",
-    "readMore": "Read more"
+    "readMore": "Read more",
+    "postGithub": "View at GitHub"
   },
   "pagination": {
     "prev": "Previous",

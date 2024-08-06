@@ -17,7 +17,7 @@
           <span class="mx-1">|</span>
         </template>
         <Icon name="heroicons:eye-20-solid" class="mr-1 inline-block h-4 w-4" aria-label="View Count" />
-        <span>{{ $t("blog.viewCount", [views.toLocaleString()]) }}</span>
+        <span>{{ $t("blog.viewCount", [views === -1 ? "?" : views.toLocaleString()]) }}</span>
       </p>
     </div>
   </header>
@@ -29,6 +29,7 @@ import type { ReadTimeResults } from "reading-time";
 
 const props = withDefaults(
   defineProps<{
+    slug: string;
     title?: string;
     readingTime?: ReadTimeResults;
     publishedAt?: Date | string;
@@ -40,9 +41,10 @@ const props = withDefaults(
   }
 );
 
-const views = ref(0);
+const views = ref(-1);
 const { locale } = useI18n();
 const dayjs = useDayjs();
+const route = useRoute();
 
 const parsedReadingTime = computed(() => {
   if (props.readingTime) {
@@ -54,9 +56,33 @@ const parsedReadingTime = computed(() => {
   }
 });
 
-// onMounted(() => {
-//   // request views to plausible
-// });
+const { data: pageView, execute } = await useAsyncData(
+  `blog-post-views-${props.slug}-${locale.value}`,
+  () => {
+    const url = new URLSearchParams();
+
+    url.append("slug", route.path);
+    url.append("siteId", "blog.n4o.xyz");
+
+    return $fetch<{
+      hits: number;
+    }>(`https://naotimes-og.glitch.me/psb/hits?${url.toString()}`);
+  },
+  {
+    immediate: false,
+    dedupe: "cancel",
+  }
+);
+
+onMounted(async () => {
+  if (!import.meta.dev) {
+    await execute();
+
+    if (pageView.value) {
+      views.value = pageView.value.hits;
+    }
+  }
+});
 </script>
 
 <style scoped lang="postcss">

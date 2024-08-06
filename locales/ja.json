@@ -38,7 +38,8 @@
     "missing": "投稿が見つかりません",
     "missingNotice": "アクセスしようとしている投稿は利用できませんが、別の言語の代替バージョンがあります",
     "noTags": "登録されたタグが見つかりません",
-    "latest": "最新"
+    "latest": "最新",
+    "postGithub": "GitHub で確認してください"
   },
   "navigation": {
     "pageOf": "中"

@@ -14,6 +14,7 @@
         </div>
       </div>
       <PostHeader
+        :slug="contentResponse?.content.slug"
         :title="contentResponse?.content.title"
         :reading-time="contentResponse?.content.readingTime"
         :published-at="contentResponse?.content.date"
@@ -37,6 +38,18 @@
             <ContentRenderer :value="contentResponse?.content">
               <ContentRendererMarkdown :value="contentResponse?.content" />
             </ContentRenderer>
+          </div>
+          <div class="py-6 text-right text-sm text-gray-700 dark:text-gray-300">
+            <NuxtLink
+              :to="getGithubEditLink(contentResponse.content._stem!)"
+              class="normal-link font-variable text-right glow-text-sm glow-shadow variation-weight-medium"
+            >
+              {{ $t("blog.postGithub") }}
+            </NuxtLink>
+          </div>
+          <div v-if="!isDev" class="py-6 text-sm text-gray-700 dark:text-gray-300">
+            <!-- Comment only in Production -->
+            <CommentBox />
           </div>
         </div>
         <footer>
@@ -85,6 +98,10 @@ const { locale, t } = useI18n();
 const localePath = useLocalePath();
 const runtimeConfig = useRuntimeConfig();
 
+const isDev = computed(() => {
+  return import.meta.dev;
+});
+
 interface ContentError extends Error {
   statusCode: number;
 }
@@ -93,6 +110,10 @@ function firstSlug(slug: string | string[]) {
   const slugged = typeof slug === "string" ? [slug] : slug;
 
   return slugged[0];
+}
+
+function getGithubEditLink(filename: string) {
+  return `https://github.com/noaione/blog.n4o.xyz/blob/master/content/${filename}`;
 }
 
 const { data: contentResponse, error } = await useAsyncData<ContentDataResponse, ContentError>(

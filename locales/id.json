@@ -40,7 +40,8 @@
     "noTags": "Tidak ada tagar yang terdaftar",
     "latest": "Terbaru",
     "viewAll": "Semua postingan",
-    "readMore": "Lihat lebih lanjut"
+    "readMore": "Lihat lebih lanjut",
+    "postGithub": "Lihat di GitHub"
   },
   "pagination": {
     "prev": "Sebelumnya",

@@ -44,7 +44,7 @@ function formatTime(duration: number) {
 }
 
 // Watch for changes in all props
-watch(
+const unwatchTimer = watch(
   [() => props.current, () => props.target],
   async () => {
     startAt.value = new Date();
@@ -75,6 +75,7 @@ watch(
     // Cleanup timer
     onBeforeUnmount(() => {
       clearInterval(timer);
+      unwatchTimer();
     });
   },
   { immediate: true }
