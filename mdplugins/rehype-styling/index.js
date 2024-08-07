@@ -18,7 +18,7 @@ export default function rehypeStyling() {
       // en-dash (for number ranges)
       [/(\d+)-(\d+)/g, ($0, $1, $2) => `${$1}–${$2}`],
       // em-dash (for double dashes)
-      [/--/g, "—"],
+      [/(?<!-)(--)(?!-)/g, "—"],
       // the correct interrobang !? -> ?!
       [/!\?/g, "?!"],
     ]);

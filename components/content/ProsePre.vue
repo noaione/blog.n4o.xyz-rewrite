@@ -108,8 +108,13 @@ onMounted(() => {
 </script>
 
 <style lang="postcss">
+.shiki-wrapper code {
+  display: inline-block;
+  width: 100%;
+}
+
 .shiki-wrapper code .line {
-  display: table-row;
+  display: table;
 }
 
 .shiki-wrapper {
@@ -154,5 +159,71 @@ onMounted(() => {
   font-variation-settings:
     "wght" var(--shiki-wght),
     "slnt" var(--shiki-slnt);
+}
+
+.shiki-wrapper.has-focus-line .line:not(.is-focused) {
+  transition:
+    filter 0.35s,
+    opacity 0.35s;
+}
+
+.shiki-wrapper.has-focus-line .line:not(.is-focused) {
+  filter: blur(6px);
+  opacity: 0.7;
+}
+
+.shiki-wrapper.has-focus-line:hover .line:not(.is-focused) {
+  filter: blur(0);
+  opacity: 1;
+}
+
+/* 
+  Shiki diff styles
+*/
+.line.highlight,
+.line.diff {
+  width: 100%;
+}
+
+.line.hidden {
+  display: none !important;
+}
+
+.line.diff.add {
+  background-color: #2869833b;
+}
+
+.dark .line.diff.add {
+  background-color: #31748f87;
+}
+
+.line.diff.add::before {
+  content: "+ ";
+  margin-left: 0.25rem;
+  color: #106d10;
+}
+
+.dark .line.diff.add::before {
+  color: #b0e4b0;
+}
+
+.line.diff.remove {
+  opacity: 0.7;
+  background-color: #b4637a57;
+}
+
+.line.diff.remove::before {
+  content: "- ";
+  margin-left: 0.25rem;
+  color: #9e1919;
+}
+
+.dark .line.diff.remove::before {
+  color: #feabab;
+}
+
+.dark .line.diff.remove {
+  opacity: 0.7;
+  background-color: #eb6f9273;
 }
 </style>

@@ -1,6 +1,5 @@
 import { fileURLToPath } from "node:url";
 import { dirname } from "node:path";
-
 import type { LocaleObject } from "@nuxtjs/i18n";
 
 const mathMLIgnore = (tag: string) => {
@@ -305,6 +304,7 @@ export default defineNuxtConfig({
         "postcss",
         "vue",
         "shell",
+        "bash",
         "mdc",
         "mdx",
         "md",

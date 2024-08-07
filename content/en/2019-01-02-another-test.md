@@ -12,9 +12,9 @@ author: noaione
 Notation for code block
 
 ```ts meta
-console.log("hewwo"); // [!code --]
-console.log("hello"); // [!code ++]
-console.log("goodbye");
+console.log("hewwo"); // [!code ---]
+console.log("hello"); // [!code +++]
+console.log("goodbye"); // aosdk
 ```
 
 ```ts meta
