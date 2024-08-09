@@ -39,7 +39,7 @@
               <ContentRendererMarkdown :value="contentResponse?.content" />
             </ContentRenderer>
           </div>
-          <div class="py-6 text-right text-sm text-gray-700 dark:text-gray-300">
+          <div class="py-6 text-sm text-gray-700 dark:text-gray-300 xl:text-right">
             <NuxtLink
               :to="getGithubEditLink(contentResponse.content._stem!)"
               class="normal-link font-variable text-right glow-text-sm glow-shadow variation-weight-medium"

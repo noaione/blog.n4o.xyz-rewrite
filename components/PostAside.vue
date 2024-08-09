@@ -27,37 +27,36 @@
       </h2>
       <SpotifyNowPlaying compact />
     </div>
-    <div v-if="navigation?.next || navigation?.prev" class="flex justify-between py-4 xl:block xl:space-y-8 xl:py-8">
+    <div
+      v-if="navigation?.next || navigation?.prev"
+      class="grid grid-cols-2 grid-rows-[1fr] gap-x-2 py-4 xl:grid-cols-[1fr] xl:grid-rows-2 xl:gap-x-0 xl:gap-y-6"
+    >
       <div v-if="navigation?.prev">
+        <h2
+          class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
+        >
+          {{ $t("blog.prevPost") }}
+        </h2>
+        <NuxtLink
+          class="normal-link font-variable break-words tracking-tight text-primary-500 variation-weight-semibold"
+          :href="formatPostLink(navigation?.prev)"
+        >
+          {{ navigation?.prev.title }}
+        </NuxtLink>
+      </div>
+      <div v-if="navigation?.next" class="text-right xl:text-left">
+        <h2
+          class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
+        >
+          {{ $t("blog.nextPost") }}
+        </h2>
         <div>
-          <h2
-            class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
-          >
-            {{ $t("blog.prevPost") }}
-          </h2>
           <NuxtLink
             class="normal-link font-variable break-words tracking-tight text-primary-500 variation-weight-semibold"
-            :href="formatPostLink(navigation?.prev)"
+            :href="formatPostLink(navigation?.next)"
           >
-            {{ navigation?.prev.title }}
+            {{ navigation?.next.title }}
           </NuxtLink>
-        </div>
-      </div>
-      <div v-if="navigation?.next">
-        <div>
-          <h2
-            class="font-variable mb-0.5 text-xs uppercase tracking-wider text-gray-500 variation-weight-semibold dark:text-gray-400"
-          >
-            {{ $t("blog.nextPost") }}
-          </h2>
-          <div>
-            <NuxtLink
-              class="normal-link font-variable break-words tracking-tight text-primary-500 variation-weight-semibold"
-              :href="formatPostLink(navigation?.next)"
-            >
-              {{ navigation?.next.title }}
-            </NuxtLink>
-          </div>
         </div>
       </div>
     </div>
