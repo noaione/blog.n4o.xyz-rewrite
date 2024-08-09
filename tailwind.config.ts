@@ -85,9 +85,9 @@ export default {
         primary: fiordColors,
       },
       fontFamily: {
-        monospace: ["Monaspace Xenon Var", "Monaspace Xenon", ...defaultTheme.fontFamily.mono],
-        sans: ["Monaspace Neon Var", "Monaspace Neon", ...defaultTheme.fontFamily.sans],
-        custom: ["Monaspace Neon", "Monaspace Xenon", "Monaspace Neon Var", "Monaspace Xenon Var"],
+        monospace: ["Monaspace Xenon Var VF", "Monaspace Xenon", ...defaultTheme.fontFamily.mono],
+        sans: ["Monaspace Neon Var VF", "Monaspace Neon", ...defaultTheme.fontFamily.sans],
+        custom: ["Monaspace Neon", "Monaspace Xenon", "Monaspace Neon Var VF", "Monaspace Xenon Var VF"],
       },
       typography: {
         DEFAULT: {

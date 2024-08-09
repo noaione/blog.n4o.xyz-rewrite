@@ -4,6 +4,22 @@
 @tailwind components;
 @tailwind utilities;
 
+@font-face {
+  font-family: "Monaspace Xenon Var VF";
+  src: url("/assets/fonts/MonaspaceXenonVarVF[wght,wdth,slnt].woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-style: oblique -11deg 0deg;
+  font-stretch: 100% 125%;
+}
+
+@font-face {
+  font-family: "Monaspace Neon Var VF";
+  src: url("/assets/fonts/MonaspaceNeonVarVF[wght,wdth,slnt].woff2") format("woff2-variations");
+  font-weight: 200 800;
+  font-style: oblique -11deg 0deg;
+  font-stretch: 100% 125%;
+}
+
 /* Monaspace Xenon is for Regular text */
 .font-monaspace-xenon {
   font-family: "Monaspace Xenon", ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono",
@@ -16,13 +32,13 @@
     monospace;
 }
 
-@supports (font-variation-settings: normal) {
+@supports (font-variation-settings: "wght" 500) {
   .font-monaspace-xenon {
-    font-family: "Monaspace Xenon Var";
+    font-family: "Monaspace Xenon Var VF", "Monaspace Xenon";
   }
 
   .font-monaspace-neon {
-    font-family: "Monaspace Neon Var";
+    font-family: "Monaspace Neon Var VF", "Monaspace Neon";
   }
 }
 
